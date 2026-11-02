@@ -31,11 +31,11 @@ const flagship: Project[] = [
     category: "AI Systems & Evaluation",
     badge: "Python 3.11+ / Pydantic v2",
     description:
-      "Production evaluation framework for benchmarking autonomous lakehouse agent workflows. Enforces strict Pydantic v2 schema precision, detects catalog column hallucinations, and tests AST self-healing recovery before Spark runtime execution.",
+      "Evaluation framework for benchmarking autonomous lakehouse agent workflows. Enforces strict Pydantic v2 contracts, rejects hallucinated catalog columns, gates destructive writes, and tests self-healing recovery from schema drift. Scores are from its bundled 10-case suite.",
     metrics: [
-      { label: "Schema Precision", value: "99.2%" },
-      { label: "Autonomous Recovery Pass Rate", value: "94.1%" },
-      { label: "CU Budget Guard", value: "Integrated" },
+      { label: "Schema Precision", value: "100%" },
+      { label: "Hallucinations Caught", value: "100%" },
+      { label: "Self-Healing Recovery", value: "100%" },
     ],
     stack: ["Python", "Pydantic v2", "PyTest", "Streamlit", "PySpark AST"],
     githubUrl: GH + "prompt-ops-eval-harness",

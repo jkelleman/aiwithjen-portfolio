@@ -343,13 +343,13 @@ export default function HomePage() {
 
               <div className="p-3 bg-slate-950 rounded border border-slate-800 font-mono text-xs space-y-1">
                 <div className="text-emerald-400">
-                  ✔ Schema Precision: 99.2% (Delta Catalog Grounded)
+                  ✔ Schema Precision: 100% (10-case eval suite)
                 </div>
                 <div className="text-emerald-400">
-                  ✔ Autonomous Recovery Pass Rate: 94.1%
+                  ✔ Self-Healing Recovery: 100%
                 </div>
                 <div className="text-slate-400">
-                  ⚡ Fabric CU Token Burn Profiler Included
+                  ⚡ Capacity Unit (CU) Budget Guard Included
                 </div>
               </div>
             </div>
