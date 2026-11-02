@@ -18,6 +18,7 @@ type Project = {
   stack: string[];
   // null = repository not published yet
   githubUrl: string | null;
+  liveUrl?: string;
   companionSlug?: string;
   companionTitle?: string;
 };
@@ -39,6 +40,7 @@ const flagship: Project[] = [
     ],
     stack: ["Python", "Pydantic v2", "PyTest", "Streamlit", "PySpark AST"],
     githubUrl: GH + "prompt-ops-eval-harness",
+    liveUrl: "https://prompt-ops-eval-harness.streamlit.app",
     companionSlug: "/work/project-osmos",
     companionTitle: "Project Osmos Case Study",
   },
@@ -222,7 +224,14 @@ function ProjectCard({ project }: { project: Project }) {
         ) : (
           <span />
         )}
-        <RepoLink url={project.githubUrl} />
+        <div className="flex items-center gap-3">
+          {project.liveUrl && (
+            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+              <span>Live App</span> <ExternalLink className="w-3 h-3" />
+            </a>
+          )}
+          <RepoLink url={project.githubUrl} />
+        </div>
       </div>
     </article>
   );

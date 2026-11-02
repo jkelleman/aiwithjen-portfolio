@@ -364,7 +364,9 @@ export default function HomePage() {
                 <span>View GitHub Repo</span>{" "}
                 <ExternalLink className="w-3 h-3" />
               </a>
-              <span className="text-slate-500">Includes Streamlit Demo</span>
+              <a href="https://prompt-ops-eval-harness.streamlit.app" target="_blank" rel="noreferrer" className="text-emerald-400 hover:text-emerald-300">
+                Live Streamlit Demo ↗
+              </a>
             </div>
           </div>
 
