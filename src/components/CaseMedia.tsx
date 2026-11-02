@@ -57,6 +57,7 @@ export function CaseVideo({ fig, caption, label }: { fig: string; caption: strin
           className="block h-auto w-full"
         >
           <source src={caseAssetUrl("investigate-demo.mp4")} type="video/mp4" />
+          <track kind="captions" src={caseAssetUrl("investigate-demo.vtt")} srcLang="en" label="English" default />
         </video>
       </div>
       <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-graphite">{caption}</figcaption>

@@ -7,6 +7,7 @@ export type CaseAsset = { width: number; height: number };
 
 export const CASE_ASSETS = {
   "investigate-demo.mp4": { width: 1920, height: 900 },
+  "investigate-demo.vtt": { width: 0, height: 0 },
   "investigate-demo-poster.png": {
     width: 1920,
     height: 900 },

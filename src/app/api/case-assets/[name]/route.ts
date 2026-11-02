@@ -21,7 +21,8 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ name: s
   }
 
   const headers: Record<string, string> = {
-    "Content-Type": result.blob.contentType,
+    // Browsers only load caption tracks served as text/vtt.
+    "Content-Type": name.endsWith(".vtt") ? "text/vtt; charset=utf-8" : result.blob.contentType,
     "X-Content-Type-Options": "nosniff",
     "X-Robots-Tag": "noindex, nofollow",
     "Cache-Control": "private, no-cache",
