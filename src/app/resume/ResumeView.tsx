@@ -188,7 +188,7 @@ export default function ResumeView() {
             </span>
           </h1>
           <p className="text-xs text-slate-400 font-mono mt-0.5">
-            Principal Content Designer · AI Systems & Data Architecture · Somerville, MA
+            Principal Content Designer · AI Systems & Data Architecture · Boston, MA
           </p>
         </div>
 

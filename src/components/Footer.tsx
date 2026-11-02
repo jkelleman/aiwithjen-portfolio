@@ -55,7 +55,7 @@ export default function Footer() {
         </nav>
       </div>
       <p className="mx-auto w-full max-w-6xl px-5 pb-10 font-mono text-xs text-graphite sm:px-8">
-        © 2026 Jen Kelleman · Somerville, MA
+        © 2026 Jen Kelleman · Boston, MA
       </p>
     </footer>
   );
