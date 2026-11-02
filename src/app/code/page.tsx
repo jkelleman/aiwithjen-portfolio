@@ -64,7 +64,7 @@ export default function CodePage() {
       <Reveal>
         <p className="fig-label mb-6">Open source</p>
         <h1 className="max-w-3xl text-4xl font-medium leading-[1.08] tracking-tight text-ink sm:text-6xl">
-          Working code, not just specs.
+          I build what I design.
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-graphite">
           Each project turns a design idea into something you can run, test, or try.

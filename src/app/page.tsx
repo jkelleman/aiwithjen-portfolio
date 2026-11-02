@@ -162,7 +162,7 @@ export default function HomePage() {
       <section className="grid gap-12 pb-36 md:grid-cols-[1fr_2fr]">
         <Reveal>
           <p className="fig-label mb-4">Fig. 04 · Open source</p>
-          <h2 className="text-3xl font-medium tracking-tight text-ink">Working code, not just specs.</h2>
+          <h2 className="text-3xl font-medium tracking-tight text-ink">I build what I design.</h2>
           <Link href="/code" className="link-draw mt-6 inline-block text-accent">
             All projects
           </Link>
