@@ -1,11 +1,22 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Lock } from "lucide-react";
 import { CountUp, Reveal, Spotlight } from "@/components/Motion";
 import { CopyDiff, type CopyPair } from "@/components/CopyDiff";
 
 const work = [
   {
-    fig: "Fig. 01 · Microsoft Fabric",
+    fig: "Fig. 01 · Conversation design",
+    href: "/work/pipeline-copilot",
+    title: "Pipeline Copilot",
+    line: "Teaching Copilot to explain a failed pipeline, then turning the lessons into a recovery framework for all of Fabric. Includes internal work; ask me for the password.",
+    value: 18,
+    suffix: "",
+    unit: "months building the error language Copilot speaks",
+    feature: true,
+    locked: true,
+  },
+  {
+    fig: "Fig. 02 · Microsoft Fabric",
     href: "/work/project-osmos",
     title: "Project Osmos",
     line: "Designing the autonomous data engineer: guardrails, handoffs, and self-healing for an agent that runs while you sleep.",
@@ -14,7 +25,7 @@ const work = [
     unit: "less manual pipeline authoring",
   },
   {
-    fig: "Fig. 02 · Data systems",
+    fig: "Fig. 03 · Data systems",
     href: "/work/enterprise-semantic-layer",
     title: "The enterprise semantic layer",
     line: "Taxonomies and metadata contracts that turned lakehouse plumbing into metrics people and agents can query precisely.",
@@ -116,13 +127,20 @@ export default function HomePage() {
         </Reveal>
         <div className="grid gap-6 md:grid-cols-2">
           {work.map((w, i) => (
-            <Reveal key={w.href} delay={i * 100}>
+            <Reveal key={w.href} delay={i * 100} className={"feature" in w && w.feature ? "md:col-span-2" : ""}>
               <Spotlight className="h-full rounded-2xl">
                 <Link
                   href={w.href}
                   className="group flex h-full flex-col rounded-2xl border border-rule bg-card/80 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent sm:p-10"
                 >
-                  <span className="fig-label">{w.fig}</span>
+                  <span className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="fig-label">{w.fig}</span>
+                    {"locked" in w && w.locked && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-rule px-2.5 py-0.5 text-xs text-graphite">
+                        <Lock className="h-3 w-3" /> Password protected
+                      </span>
+                    )}
+                  </span>
                   <span className="mt-16 block text-7xl font-medium tracking-tight text-ink sm:text-8xl">
                     <CountUp to={w.value} suffix={w.suffix} />
                   </span>
@@ -145,7 +163,7 @@ export default function HomePage() {
       {/* SHOW, DON'T TELL: REWRITES */}
       <section className="pb-36">
         <Reveal>
-          <p className="fig-label mb-4">Fig. 03 · Language as infrastructure</p>
+          <p className="fig-label mb-4">Fig. 04 · Language as infrastructure</p>
           <h2 className="max-w-2xl text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl">
             Words decide whether an agent’s failure is recoverable.
           </h2>
@@ -161,7 +179,7 @@ export default function HomePage() {
       {/* CODE */}
       <section className="grid gap-12 pb-36 md:grid-cols-[1fr_2fr]">
         <Reveal>
-          <p className="fig-label mb-4">Fig. 04 · Open source</p>
+          <p className="fig-label mb-4">Fig. 05 · Open source</p>
           <h2 className="text-3xl font-medium tracking-tight text-ink">I build what I design.</h2>
           <Link href="/code" className="link-draw mt-6 inline-block text-accent">
             All projects
@@ -197,7 +215,7 @@ export default function HomePage() {
       {/* WRITING */}
       <section className="grid gap-12 pb-36 md:grid-cols-[1fr_2fr]">
         <Reveal>
-          <p className="fig-label mb-4">Fig. 05 · Writing</p>
+          <p className="fig-label mb-4">Fig. 06 · Writing</p>
           <h2 className="text-3xl font-medium tracking-tight text-ink">Thinking in public.</h2>
           <Link href="/writing" className="link-draw mt-6 inline-block text-accent">
             All essays
