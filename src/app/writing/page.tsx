@@ -17,7 +17,7 @@ const essays = [
     date: "Aug 2025",
     readTime: "8 min read",
     tags: ["#DataArchitecture", "#ContentDesign", "#UXEngineering", "#AI", "#SemanticLayer"],
-    mediumUrl: "https://medium.com/@jenniferkelleman/designing-the-semantic-layer",
+    mediumUrl: "https://medium.com/@jenkelleman/designing-the-semantic-layer-where-language-meets-data-architecture-983ea628fbdd",
     companionSlug: "/work/enterprise-semantic-layer",
   },
   {
@@ -27,7 +27,7 @@ const essays = [
     date: "Aug 2025",
     readTime: "7 min read",
     tags: ["#AIEthics", "#ContentDesign", "#UX", "#ResponsibleAI", "#UXWriting"],
-    mediumUrl: "https://medium.com/@jenniferkelleman/designing-for-judgment",
+    mediumUrl: "https://medium.com/@jenkelleman/designing-for-judgment-what-ai-cant-see-yet-46497aa88d19",
     companionSlug: "/work/project-osmos",
   },
   {
@@ -37,7 +37,7 @@ const essays = [
     date: "Jul 2025",
     readTime: "6 min read",
     tags: ["#ContentDesign", "#AI", "#Orchestration", "#DesignLeadership"],
-    mediumUrl: "https://medium.com/@jenniferkelleman/the-frame-is-the-feature",
+    mediumUrl: "https://medium.com/@jenkelleman/scaling-voice-how-i-built-an-ai-agent-to-think-like-a-content-designer-5238d2ee725f",
     companionSlug: "/work/project-osmos",
   },
   {
@@ -47,7 +47,7 @@ const essays = [
     date: "Aug 2025",
     readTime: "9 min read",
     tags: ["#DataArchitecture", "#DataLakehouse", "#BigData", "#TechCommunication"],
-    mediumUrl: "https://medium.com/@jenniferkelleman/from-warehouses-to-lakehouses",
+    mediumUrl: "https://medium.com/@jenkelleman/from-data-warehouses-to-lakehouses-the-evolution-of-data-architecture-0cb539e7ee96",
     companionSlug: "/work/enterprise-semantic-layer",
   },
 ];
