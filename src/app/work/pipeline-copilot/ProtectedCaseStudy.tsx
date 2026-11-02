@@ -5,14 +5,30 @@ import { evaluate } from "@mdx-js/mdx";
 import { get } from "@vercel/blob";
 import { ACCESS_COOKIE, PROTECTED_PREFIX, hasAccess } from "@/lib/caseAccess";
 import { useMDXComponents } from "@/mdx-components";
-import { CaseStudyHeader, ImpactGrid, PrincipleTable } from "@/components/CaseStudy";
+import {
+  AtAGlance,
+  CaseStudyHeader,
+  HowMightWe,
+  ImpactGrid,
+  LearnLog,
+  MetricGrid,
+  PrincipleTable,
+  ProcessNav,
+  Stage,
+} from "@/components/CaseStudy";
 import { DialogueExplorer, ResponseOptions, RubricFigure } from "@/components/ConversationFigures";
 import { ActMarker, BeforeAfterTabs, CaseFigure, CaseVideo } from "@/components/CaseMedia";
 import { EvolutionFigure, TaxonomyFigure } from "@/components/ErrorModels";
 
 // Components the private MDX may use. The MDX itself can't import anything.
 const caseComponents = {
+  AtAGlance,
   CaseStudyHeader,
+  HowMightWe,
+  LearnLog,
+  MetricGrid,
+  ProcessNav,
+  Stage,
   ImpactGrid,
   PrincipleTable,
   DialogueExplorer,
