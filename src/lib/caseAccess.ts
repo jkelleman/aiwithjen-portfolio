@@ -33,7 +33,7 @@ function safeEqual(a: string, b: string): boolean {
 /** The configured password, or null. With no password set, everything stays locked. */
 function configuredPassword(): string | null {
   const p = process.env.CASE_STUDY_PASSWORD;
-  return p && p.length >= 8 ? p : null;
+  return p && p.length >= 6 ? p : null;
 }
 
 /**
@@ -49,13 +49,6 @@ export async function hasAccess(cookieValue: string | undefined): Promise<boolea
   if (!cookieValue) return false;
   const expected = await accessToken();
   return expected !== null && safeEqual(cookieValue, expected);
-}
-
-/** Why a check would fail, for server logs only. Never includes the password. */
-export function passwordStatus(): "missing" | "too-short" | "ok" {
-  const p = process.env.CASE_STUDY_PASSWORD;
-  if (!p) return "missing";
-  return p.length >= 8 ? "ok" : "too-short";
 }
 
 export async function passwordMatches(attempt: string): Promise<boolean> {
