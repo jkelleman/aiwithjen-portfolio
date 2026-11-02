@@ -8,7 +8,6 @@ import {
   Briefcase,
   GraduationCap,
   Award,
-  Mail,
   Filter,
 } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/BrandIcons";
@@ -243,10 +242,6 @@ export default function ResumeView() {
               Executive Profile
             </h2>
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-400">
-              <a href="mailto:jen@aiwithjen.com" className="hover:text-blue-400 flex items-center gap-1">
-                <Mail className="w-3.5 h-3.5" /> jen@aiwithjen.com
-              </a>
-              <span>·</span>
               <a href="https://linkedin.com/in/jenniferkelleman" target="_blank" rel="noreferrer" className="hover:text-blue-400 flex items-center gap-1">
                 <LinkedInIcon className="w-3.5 h-3.5" /> LinkedIn
               </a>

@@ -9,7 +9,6 @@ const directory = [
 ];
 
 const elsewhere = [
-  { href: "mailto:jen@aiwithjen.com", label: "jen@aiwithjen.com" },
   { href: "https://github.com/jkelleman", label: "GitHub" },
   { href: "https://linkedin.com/in/jenniferkelleman", label: "LinkedIn" },
   { href: "https://medium.com/@jenkelleman", label: "Medium" },

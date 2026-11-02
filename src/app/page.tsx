@@ -228,10 +228,12 @@ export default function HomePage() {
             Building agents people need to trust? Let’s talk.
           </p>
           <a
-            href="mailto:jen@aiwithjen.com"
+            href="https://linkedin.com/in/jenniferkelleman"
+            target="_blank"
+            rel="noreferrer"
             className="link-draw mt-10 inline-block text-2xl text-accent sm:text-3xl"
           >
-            jen@aiwithjen.com
+            Message me on LinkedIn
           </a>
         </Reveal>
       </section>
