@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { CountUp, Reveal, Spotlight } from "@/components/Motion";
 
 export const metadata: Metadata = {
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const studies = [
   {
     fig: "Case study 01 · Conversation design",
+    locked: true,
     href: "/work/pipeline-copilot",
     title: "Teaching Copilot to explain a failed pipeline",
     line: "Multi-turn recovery, guardrails, and an evaluation rubric for the Copilot error assistant in Fabric Data Factory, and the recovery framework it grew into. Password protected.",
@@ -62,7 +63,14 @@ export default function WorkPage() {
                 className="group grid gap-10 rounded-2xl border border-rule bg-card/80 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent sm:p-12 lg:grid-cols-[1.3fr_1fr]"
               >
                 <div>
-                  <span className="fig-label">{s.fig}</span>
+                  <span className="flex flex-wrap items-center gap-3">
+                    <span className="fig-label">{s.fig}</span>
+                    {"locked" in s && s.locked && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-rule px-2.5 py-0.5 text-xs text-graphite">
+                        <Lock className="h-3 w-3" /> Password protected
+                      </span>
+                    )}
+                  </span>
                   <h2 className="mt-6 text-3xl font-medium leading-tight tracking-tight text-ink transition-colors group-hover:text-accent sm:text-4xl">
                     {s.title}
                   </h2>
