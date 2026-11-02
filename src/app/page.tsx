@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Lock } from "lucide-react";
 import { CountUp, Reveal, Spotlight } from "@/components/Motion";
 import { CopyDiff, type CopyPair } from "@/components/CopyDiff";
 
@@ -8,11 +8,12 @@ const work = [
     fig: "Fig. 01 · Conversation design",
     href: "/work/pipeline-copilot",
     title: "Pipeline Copilot",
-    line: "Teaching Copilot to explain a failed pipeline: multi-turn recovery, a persona people trust at 2 a.m., guardrails, and a rubric for good answers.",
+    line: "Teaching Copilot to explain a failed pipeline, then turning the lessons into a recovery framework for all of Fabric. Includes internal work; ask me for the password.",
     value: 18,
     suffix: "",
     unit: "months building the error language Copilot speaks",
     feature: true,
+    locked: true,
   },
   {
     fig: "Fig. 02 · Microsoft Fabric",
@@ -132,7 +133,14 @@ export default function HomePage() {
                   href={w.href}
                   className="group flex h-full flex-col rounded-2xl border border-rule bg-card/80 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent sm:p-10"
                 >
-                  <span className="fig-label">{w.fig}</span>
+                  <span className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="fig-label">{w.fig}</span>
+                    {"locked" in w && w.locked && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-rule px-2.5 py-0.5 text-xs text-graphite">
+                        <Lock className="h-3 w-3" /> Password protected
+                      </span>
+                    )}
+                  </span>
                   <span className="mt-16 block text-7xl font-medium tracking-tight text-ink sm:text-8xl">
                     <CountUp to={w.value} suffix={w.suffix} />
                   </span>

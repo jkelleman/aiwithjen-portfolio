@@ -15,7 +15,7 @@ const studies = [
     fig: "Case study 01 · Conversation design",
     href: "/work/pipeline-copilot",
     title: "Teaching Copilot to explain a failed pipeline",
-    line: "Multi-turn recovery, persona, guardrails, and an evaluation rubric for the Copilot error assistant in Microsoft Fabric Data Factory.",
+    line: "Multi-turn recovery, guardrails, and an evaluation rubric for the Copilot error assistant in Fabric Data Factory, and the recovery framework it grew into. Password protected.",
     stats: [
       { to: 18, suffix: "", label: "months of error-language strategy behind it" },
       { to: 3, suffix: "", label: "teams piloting auto-generated errors from my content matrix" },
