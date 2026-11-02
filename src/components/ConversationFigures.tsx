@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RotateCcw } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -36,8 +36,15 @@ export function DialogueExplorer({
 }) {
   const first: Turn = { who: "assistant", text: nodes[start].says, chips: nodes[start].chips, node: start };
   const [turns, setTurns] = useState<Turn[]>([first]);
+  const listRef = useRef<HTMLOListElement | null>(null);
   const current = turns[turns.length - 1].node ?? start;
   const node = nodes[current];
+
+  // Keep the newest turn in view inside the fixed-height transcript.
+  useEffect(() => {
+    const el = listRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+  }, [turns]);
 
   function choose(label: string, to: string) {
     const next = nodes[to];
@@ -49,7 +56,7 @@ export function DialogueExplorer({
       <p className="fig-label mb-5">{fig}</p>
       <div className="grid overflow-hidden rounded-2xl border border-rule bg-card lg:grid-cols-[1.35fr_1fr]">
         {/* Conversation */}
-        <div className="flex min-h-[30rem] flex-col border-b border-rule lg:border-b-0 lg:border-r">
+        <div className="flex flex-col border-b border-rule lg:border-b-0 lg:border-r">
           <div className="flex items-center justify-between border-b border-rule bg-paper px-5 py-3">
             <span className="font-mono text-xs text-graphite">{context}</span>
             <button
@@ -61,7 +68,7 @@ export function DialogueExplorer({
             </button>
           </div>
 
-          <ol className="flex-1 space-y-4 overflow-y-auto p-5" aria-live="polite">
+          <ol ref={listRef} className="h-[26rem] space-y-4 overflow-y-auto p-5" aria-live="polite">
             {turns.map((t, i) => (
               <li key={i} className={t.who === "user" ? "flex justify-end" : "flex"}>
                 <div
