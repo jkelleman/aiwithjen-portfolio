@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Layers } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { CountUp, Reveal, Spotlight } from "@/components/Motion";
 
 export const metadata: Metadata = {
   title: "Work | Jen Kelleman",
@@ -11,85 +12,70 @@ export const metadata: Metadata = {
 
 const studies = [
   {
+    fig: "Case study 01 · Microsoft Fabric",
     href: "/work/project-osmos",
-    badge: "Flagship System",
-    context: "Microsoft Fabric OneLake",
-    accent: "blue",
-    title: "Designing the Autonomous Data Engineer: Project Osmos",
-    summary:
-      "Orchestrating autonomous tool-use, non-deterministic Spark planning, and persistent cross-surface workflows across Microsoft Fabric and local CLI developer tools.",
+    title: "Designing the autonomous data engineer",
+    line: "Guardrails, handoffs, and self-healing for Project Osmos, an agent that keeps building pipelines after you close your laptop.",
     stats: [
-      ["Scaffolding Velocity", "78% Reduction"],
-      ["Write Safety", "0% Silent Failures"],
-      ["Session Persistence", "100%"],
+      { to: 78, suffix: "%", label: "less manual authoring" },
+      { to: 0, suffix: "%", label: "silent write failures" },
     ],
   },
   {
+    fig: "Case study 02 · Data systems",
     href: "/work/enterprise-semantic-layer",
-    badge: "Data Systems & UX",
-    context: "Enterprise Catalog Architecture",
-    accent: "purple",
-    title: "Architecting the Enterprise Semantic Layer",
-    summary:
-      "The taxonomies, metadata contracts, and UI primitives that bridge distributed lakehouse storage with human analytics and autonomous agent retrieval.",
+    title: "Turning lakehouse plumbing into metrics people trust",
+    line: "A three-tier semantic model and naming grammar that gave analysts and agents one shared language.",
     stats: [
-      ["Metric Governance", "62% Ticket Drop"],
-      ["Agent Retrieval", "94% Precision"],
-      ["Token Efficiency", "-68% Context Load"],
+      { to: 94, suffix: "%", label: "agent retrieval precision" },
+      { to: 62, suffix: "%", label: "fewer metric disputes" },
     ],
   },
-] as const;
+];
 
 export default function WorkPage() {
   return (
-    <div className="max-w-5xl mx-auto space-y-12 pt-6 sm:pt-12 pb-16">
-      <div className="space-y-4 border-b border-slate-800 pb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-blue-950/40 text-blue-300 border border-blue-500/30">
-          <Layers className="w-3.5 h-3.5 text-blue-400" />
-          <span>Case Studies & Systems</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-100">
-          Work
+    <div className="pt-20 pb-8 sm:pt-28">
+      <Reveal>
+        <p className="fig-label mb-6">Work</p>
+        <h1 className="max-w-3xl text-4xl font-medium leading-[1.08] tracking-tight text-ink sm:text-6xl">
+          Systems where the words carry the weight.
         </h1>
-        <p className="text-slate-300 max-w-3xl leading-relaxed text-sm sm:text-base">
-          Production systems bridging autonomous model execution, semantic clarity, and lakehouse plumbing.
-        </p>
-      </div>
+      </Reveal>
 
-      <div className="grid grid-cols-1 gap-8">
-        {studies.map((s) => {
-          const purple = s.accent === "purple";
-          return (
-            <Link
-              key={s.href}
-              href={s.href}
-              className="group block rounded-2xl border border-slate-800 bg-slate-900/40 hover:bg-slate-900/70 hover:border-slate-700 transition-all p-6 sm:p-8 space-y-5"
-            >
-              <div className={`flex flex-wrap items-center gap-2 font-mono text-xs ${purple ? "text-purple-400" : "text-blue-400"}`}>
-                <span className={`px-2.5 py-0.5 rounded-full border font-semibold uppercase ${purple ? "bg-purple-950/60 border-purple-500/30" : "bg-blue-950/60 border-blue-500/30"}`}>
-                  {s.badge}
-                </span>
-                <span>•</span>
-                <span>{s.context}</span>
-              </div>
-              <h2 className={`text-2xl sm:text-3xl font-bold text-slate-100 transition-colors ${purple ? "group-hover:text-purple-400" : "group-hover:text-blue-400"}`}>
-                {s.title}
-              </h2>
-              <p className="text-slate-300 leading-relaxed max-w-4xl">{s.summary}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
-                {s.stats.map(([label, value]) => (
-                  <div key={label} className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                    <span className="text-slate-500 block text-[10px] uppercase">{label}</span>
-                    <span className="font-bold text-emerald-400">{value}</span>
-                  </div>
-                ))}
-              </div>
-              <span className={`inline-flex items-center gap-1 text-xs font-mono font-semibold ${purple ? "text-purple-400" : "text-blue-400"}`}>
-                Read Full Case Study <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </Link>
-          );
-        })}
+      <div className="mt-20 space-y-6">
+        {studies.map((s, i) => (
+          <Reveal key={s.href} delay={i * 100}>
+            <Spotlight className="rounded-2xl">
+              <Link
+                href={s.href}
+                className="group grid gap-10 rounded-2xl border border-rule bg-card/80 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent sm:p-12 lg:grid-cols-[1.3fr_1fr]"
+              >
+                <div>
+                  <span className="fig-label">{s.fig}</span>
+                  <h2 className="mt-6 text-3xl font-medium leading-tight tracking-tight text-ink transition-colors group-hover:text-accent sm:text-4xl">
+                    {s.title}
+                  </h2>
+                  <p className="mt-4 max-w-lg text-lg leading-relaxed text-graphite">{s.line}</p>
+                  <span className="mt-8 inline-flex items-center gap-2 text-accent">
+                    Read the case study
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-6 self-end">
+                  {s.stats.map((st) => (
+                    <div key={st.label} className="border-t border-ink pt-4">
+                      <span className="block text-5xl font-medium tracking-tight text-ink">
+                        <CountUp to={st.to} suffix={st.suffix} />
+                      </span>
+                      <span className="mt-2 block text-sm text-graphite">{st.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </Link>
+            </Spotlight>
+          </Reveal>
+        ))}
       </div>
     </div>
   );

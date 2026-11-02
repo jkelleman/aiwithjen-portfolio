@@ -106,3 +106,38 @@ export function ImpactGrid({ items }: { items: [string, string][] }) {
     </dl>
   );
 }
+
+/** About page: the "space between" diagram. */
+export function BetweenFigure() {
+  const ends = [
+    { k: "Language as decoration", v: "Chatbots, generic prompts, autocomplete" },
+    { k: "Engineering as plumbing", v: "Vector stores, compute clusters, batch jobs" },
+  ];
+  return (
+    <figure className="not-prose my-14">
+      <p className="fig-label mb-5">Fig. 01 · Where I work</p>
+      <div className="rounded-2xl border border-rule bg-card/80 p-6 sm:p-10">
+        <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto_1fr]">
+          <div className="text-left">
+            <p className="font-medium text-graphite">{ends[0].k}</p>
+            <p className="mt-1 text-sm text-graphite">{ends[0].v}</p>
+          </div>
+          <div className="mx-auto rounded-xl border-2 border-ink bg-paper px-6 py-5 text-center">
+            <p className="font-medium text-ink">Language as infrastructure</p>
+            <p className="mt-1 text-sm text-graphite">Contracts, semantic layers, recovery</p>
+          </div>
+          <div className="sm:text-right">
+            <p className="font-medium text-graphite">{ends[1].k}</p>
+            <p className="mt-1 text-sm text-graphite">{ends[1].v}</p>
+          </div>
+        </div>
+        <div aria-hidden className="relative mt-8 hidden h-px bg-slate-700 sm:block">
+          <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink" />
+        </div>
+      </div>
+      <figcaption className="mt-4 text-sm text-graphite">
+        Most enterprise AI work sits at one end. The failures happen in the middle.
+      </figcaption>
+    </figure>
+  );
+}
