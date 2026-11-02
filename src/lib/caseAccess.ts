@@ -51,6 +51,13 @@ export async function hasAccess(cookieValue: string | undefined): Promise<boolea
   return expected !== null && safeEqual(cookieValue, expected);
 }
 
+/** Why a check would fail, for server logs only. Never includes the password. */
+export function passwordStatus(): "missing" | "too-short" | "ok" {
+  const p = process.env.CASE_STUDY_PASSWORD;
+  if (!p) return "missing";
+  return p.length >= 8 ? "ok" : "too-short";
+}
+
 export async function passwordMatches(attempt: string): Promise<boolean> {
   const password = configuredPassword();
   if (!password || !attempt) return false;
