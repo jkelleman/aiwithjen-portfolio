@@ -12,7 +12,17 @@ export const metadata: Metadata = {
 
 const studies = [
   {
-    fig: "Case study 01 · Microsoft Fabric",
+    fig: "Case study 01 · Conversation design",
+    href: "/work/pipeline-copilot",
+    title: "Teaching Copilot to explain a failed pipeline",
+    line: "Multi-turn recovery, persona, guardrails, and an evaluation rubric for the Copilot error assistant in Microsoft Fabric Data Factory.",
+    stats: [
+      { to: 18, suffix: "", label: "months of error-language strategy behind it" },
+      { to: 3, suffix: "", label: "teams piloting auto-generated errors from my content matrix" },
+    ],
+  },
+  {
+    fig: "Case study 02 · Microsoft Fabric",
     href: "/work/project-osmos",
     title: "Designing the autonomous data engineer",
     line: "Guardrails, handoffs, and self-healing for Project Osmos, an agent that keeps building pipelines after you close your laptop.",
@@ -22,7 +32,7 @@ const studies = [
     ],
   },
   {
-    fig: "Case study 02 · Data systems",
+    fig: "Case study 03 · Data systems",
     href: "/work/enterprise-semantic-layer",
     title: "Turning lakehouse plumbing into metrics people trust",
     line: "A three-tier semantic model and naming grammar that gave analysts and agents one shared language.",

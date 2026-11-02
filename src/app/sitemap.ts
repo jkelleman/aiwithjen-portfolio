@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 const routes = [
   "",
   "/work",
+  "/work/pipeline-copilot",
   "/work/project-osmos",
   "/work/enterprise-semantic-layer",
   "/code",
