@@ -35,7 +35,7 @@ export default function Navbar() {
           <a href="https://github.com/jkelleman" target="_blank" rel="noreferrer" aria-label="GitHub" className="hidden md:block p-1.5 text-slate-400 hover:text-white transition">
             <GitHubIcon className="h-4 w-4" />
           </a>
-          <a href="https://linkedin.com/in/jenkelleman" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hidden md:block p-1.5 text-slate-400 hover:text-white transition">
+          <a href="https://linkedin.com/in/jenniferkelleman" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hidden md:block p-1.5 text-slate-400 hover:text-white transition">
             <LinkedInIcon className="h-4 w-4" />
           </a>
           <a href="mailto:jen@aiwithjen.com" aria-label="Email" className="hidden md:block p-1.5 text-slate-400 hover:text-white transition">

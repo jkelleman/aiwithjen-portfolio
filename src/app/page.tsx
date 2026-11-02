@@ -535,7 +535,7 @@ export default function HomePage() {
           </a>
 
           <a
-            href="https://linkedin.com/in/jenkelleman"
+            href="https://linkedin.com/in/jenniferkelleman"
             target="_blank"
             rel="noreferrer"
             className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition"

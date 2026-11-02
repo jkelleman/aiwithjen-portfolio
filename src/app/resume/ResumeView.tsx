@@ -65,7 +65,7 @@ const roles: Role[] = [
       {
         text: (
           <>
-            Direct end-to-end content strategy, information architecture, and naming across three core Microsoft Fabric workloads: Lakehouse, Monitoring & Settings, and Agentic AI (<B>~262K MAU</B>).
+            Direct end-to-end content strategy, information architecture, and naming across three core Microsoft Fabric workloads: Lakehouse, Monitoring & Settings, and Agentic AI (<B>~300K MAU</B>).
           </>
         ),
         tags: ["content-design", "data-systems"],
@@ -247,7 +247,7 @@ export default function ResumeView() {
                 <Mail className="w-3.5 h-3.5" /> jen@aiwithjen.com
               </a>
               <span>·</span>
-              <a href="https://linkedin.com/in/jenkelleman" target="_blank" rel="noreferrer" className="hover:text-blue-400 flex items-center gap-1">
+              <a href="https://linkedin.com/in/jenniferkelleman" target="_blank" rel="noreferrer" className="hover:text-blue-400 flex items-center gap-1">
                 <LinkedInIcon className="w-3.5 h-3.5" /> LinkedIn
               </a>
               <span>·</span>
@@ -261,8 +261,8 @@ export default function ResumeView() {
             Principal Content Designer, Content Design Engineer, and AI Strategist with deep expertise in enterprise data
             systems, distributed lakehouses, and autonomous agent orchestration. Over a decade of experience designing scalable
             content architecture, developer tooling language, and deterministic human-in-the-loop workflows across Microsoft Fabric,
-            Azure Data Factory, CVS Health, and SundaySky. Currently pursuing an M.S. in Computer Science at Tufts University with an
-            M.S. in Data Science from Carnegie Mellon University; pioneers the application of language as technical system infrastructure.
+            Azure Data Factory, CVS Health, and SundaySky. Holds an M.S. in Data Science from Carnegie Mellon University and
+            pioneers the application of language as technical system infrastructure.
           </p>
         </section>
 
@@ -327,7 +327,6 @@ export default function ResumeView() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
             {[
-              ["Tufts University", "M.S. in Computer Science", "Software Systems & Machine Learning (Exp. May 2028)"],
               ["Carnegie Mellon University", "M.S. in Data Science", "AI Data Visualization, Workflows & Probability (2025)"],
               ["Emerson College", "M.A. in Writing & Publishing", "Digital Innovation Emphasis"],
               ["Lafayette College", "B.A. in Psychology & English", "Thesis: Virtual Reality Communities, Equity & Social Impact"],
@@ -349,7 +348,6 @@ export default function ResumeView() {
           <div className="space-y-3 text-xs font-mono">
             <div className="p-3 rounded bg-slate-950 border border-slate-800 space-y-1">
               <span className="text-slate-200 font-semibold block">Microsoft Global Hackathon Executive Awards:</span>
-              <p className="text-slate-400">• <strong>2025 Executive Challenge Winner:</strong> Disability Innovation, ASL Sign-to-Text (Deaf-Led SLE)</p>
               <p className="text-slate-400">• <strong>2025 Regional Challenge Winner:</strong> Agentic Hardware (FlareIQ Health Telemetry for Multiple Sclerosis)</p>
               <p className="text-slate-400">• <strong>2024 Executive Challenge Winner:</strong> Accessible Design & Innovation (AI + ASL Data Pipelines)</p>
             </div>
@@ -360,13 +358,11 @@ export default function ResumeView() {
                 <p className="text-slate-400">• Microsoft Azure Data University (Cloud)</p>
                 <p className="text-slate-400">• Microsoft Azure AI Foundations (Certified AI Practitioner)</p>
                 <p className="text-slate-400">• GitHub Foundations</p>
-                <p className="text-slate-400">• Scaled Agile SAFe 6 Practitioner</p>
               </div>
 
               <div className="p-3 rounded bg-slate-950 border border-slate-800 space-y-1">
                 <span className="text-slate-200 font-semibold block">Community & Advocacy:</span>
                 <p className="text-slate-400">• Proponent, <em>Massachusetts AI Future Workforce</em></p>
-                <p className="text-slate-400">• Founder, <em>VibeHub</em> AI Community (5,000+ members)</p>
                 <p className="text-slate-400">• Organizer & Mentor, <em>Microsoft Global Hackathon</em></p>
               </div>
             </div>

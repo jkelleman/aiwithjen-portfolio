@@ -58,8 +58,8 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="https://linkedin.com/in/jenkelleman" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-slate-300 hover:text-white transition">
-                <LinkedInIcon className="h-4 w-4" /> linkedin.com/in/jenkelleman
+              <a href="https://linkedin.com/in/jenniferkelleman" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-slate-300 hover:text-white transition">
+                <LinkedInIcon className="h-4 w-4" /> linkedin.com/in/jenniferkelleman
               </a>
             </li>
           </ul>
