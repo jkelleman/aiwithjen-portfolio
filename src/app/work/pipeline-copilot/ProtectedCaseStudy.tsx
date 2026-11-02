@@ -49,7 +49,8 @@ export async function ProtectedCaseStudy() {
     redirect(`/unlock?next=${encodeURIComponent(PROTECTED_PREFIX)}`);
   }
 
-  const result = await get("case-study.mdx", { access: "private" });
+  // Skip the CDN cache so edits to the text show up right away. The file is small.
+  const result = await get("case-study.mdx", { access: "private", useCache: false });
   if (!result || result.statusCode !== 200 || !result.stream) {
     return (
       <div className="pt-10">
