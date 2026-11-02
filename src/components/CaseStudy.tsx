@@ -1,4 +1,5 @@
 // Building blocks for the MDX case studies and About page (Blueprint theme).
+import type { ReactNode } from "react";
 import { CountUp, Reveal } from "@/components/Motion";
 
 type Accent = "blue" | "purple"; // kept for compatibility; the theme uses one accent
@@ -139,5 +140,86 @@ export function BetweenFigure() {
         Most enterprise AI work sits at one end. The failures happen in the middle.
       </figcaption>
     </figure>
+  );
+}
+
+/** The 30-second version, for readers who skim. */
+export function AtAGlance({ items }: { items: [string, string][] }) {
+  return (
+    <section aria-label="At a glance" className="not-prose my-14 rounded-2xl border border-ink bg-card p-6 sm:p-8">
+      <p className="fig-label mb-6">At a glance</p>
+      <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
+        {items.map(([k, v]) => (
+          <div key={k}>
+            <dt className="fig-label mb-1.5">{k}</dt>
+            <dd className="leading-relaxed text-ink">{v}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
+/** Jump links that make the design process visible at a glance. */
+export function ProcessNav({ steps }: { steps: [string, string][] }) {
+  return (
+    <nav aria-label="Design process" className="not-prose my-12">
+      <p className="fig-label mb-3">The process</p>
+      <ol className="flex flex-wrap gap-2">
+        {steps.map(([id, label], i) => (
+          <li key={id}>
+            <a
+              href={`#${id}`}
+              className="inline-flex items-center gap-2 rounded-full border border-rule bg-card px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+            >
+              <span className="font-mono text-xs text-graphite">{String(i + 1).padStart(2, "0")}</span>
+              {label}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
+/** Section anchor with the stage label above the heading. */
+export function Stage({ id, n, label }: { id: string; n: number; label: string }) {
+  return (
+    <div id={id} className="not-prose mt-28 scroll-mt-28 border-t-2 border-ink pt-5">
+      <p className="fig-label">
+        {String(n).padStart(2, "0")} · {label}
+      </p>
+    </div>
+  );
+}
+
+/** The problem statement, set large. */
+export function HowMightWe({ children, note }: { children: ReactNode; note?: string }) {
+  return (
+    <figure className="not-prose my-12 border-l-2 border-accent pl-6">
+      <p className="fig-label mb-3">Problem statement</p>
+      <blockquote className="text-2xl font-medium leading-snug tracking-tight text-ink sm:text-3xl">{children}</blockquote>
+      {note && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-graphite">{note}</figcaption>}
+    </figure>
+  );
+}
+
+/** Method, what it tested, and what it produced. */
+export function LearnLog({ rows }: { rows: [string, string, string][] }) {
+  return (
+    <div className="not-prose my-10 overflow-hidden rounded-2xl border border-rule bg-card">
+      <div className="hidden grid-cols-[1fr_1.3fr_1.3fr] gap-6 border-b border-rule bg-paper px-6 py-3 md:grid">
+        <span className="fig-label">Method</span>
+        <span className="fig-label">What it tested</span>
+        <span className="fig-label">What it produced</span>
+      </div>
+      {rows.map(([m, t, r]) => (
+        <div key={m} className="grid gap-2 border-b border-rule px-6 py-5 last:border-b-0 md:grid-cols-[1fr_1.3fr_1.3fr] md:gap-6">
+          <p className="font-medium text-ink">{m}</p>
+          <p className="text-sm leading-relaxed text-graphite">{t}</p>
+          <p className="text-sm leading-relaxed text-ink">{r}</p>
+        </div>
+      ))}
+    </div>
   );
 }
