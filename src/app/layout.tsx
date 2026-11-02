@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,10 +14,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "Portfolio of Jen Kelleman: semantic layers, prompt infrastructure, and autonomous AI systems for the enterprise.";
+
 export const metadata: Metadata = {
-  title: "Jen Kelleman — Content Design Engineering & AI Systems Architecture",
-  description:
-    "Portfolio of Jen Kelleman: semantic layers, prompt infrastructure, and autonomous AI systems for the enterprise.",
+  metadataBase: new URL("https://aiwithjen.com"),
+  title: {
+    default: "Jen Kelleman — Content Design Engineering & AI Systems Architecture",
+    template: "%s",
+  },
+  description,
+  openGraph: {
+    type: "website",
+    url: "https://aiwithjen.com",
+    siteName: "aiwithjen.com",
+    title: "Jen Kelleman — Content Design Engineering & AI Systems Architecture",
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jen Kelleman — Content Design Engineering & AI Systems Architecture",
+    description,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -24,10 +44,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100">
-        <div className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-6">
+      <body className="min-h-full flex flex-col text-slate-100">
+        <Navbar />
+        <main className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-6">
           {children}
-        </div>
+        </main>
+        <Footer />
       </body>
     </html>
   );
