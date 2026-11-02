@@ -105,7 +105,7 @@ export default function WritingHubPage() {
             <div className="pt-5 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono">
               <Link
                 href={essay.companionSlug}
-                className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold"
+                className="text-accent hover:text-accent-dark flex items-center gap-1 font-semibold"
               >
                 <span>See Applied Architecture</span> <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -113,7 +113,7 @@ export default function WritingHubPage() {
                 href={essay.mediumUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-white flex items-center gap-1 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700/50 transition"
+                className="text-slate-400 hover:text-accent flex items-center gap-1 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700/50 transition"
               >
                 <span>Read on Medium</span> <ExternalLink className="w-3 h-3" />
               </a>

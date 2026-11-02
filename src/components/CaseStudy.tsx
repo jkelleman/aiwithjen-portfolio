@@ -1,18 +1,13 @@
-// Presentational building blocks used inside the MDX case studies and About page.
+// Building blocks for the MDX case studies and About page (Blueprint theme).
+import { CountUp, Reveal } from "@/components/Motion";
 
-type Accent = "blue" | "purple";
-
-const accentText: Record<Accent, string> = { blue: "text-blue-400", purple: "text-purple-400" };
-const accentBadge: Record<Accent, string> = {
-  blue: "bg-blue-950/60 border-blue-500/30 text-blue-300",
-  purple: "bg-purple-950/60 border-purple-500/30 text-purple-300",
-};
+type Accent = "blue" | "purple"; // kept for compatibility; the theme uses one accent
 
 export function PageHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
-    <div className="not-prose space-y-3 border-b border-slate-800 pb-8 mb-10">
-      <span className="font-mono text-xs uppercase tracking-wider text-blue-400">{eyebrow}</span>
-      <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-100">{title}</h1>
+    <div className="not-prose mb-16 pt-6">
+      <p className="fig-label mb-6">{eyebrow}</p>
+      <h1 className="text-4xl font-medium leading-[1.08] tracking-tight text-ink sm:text-6xl">{title}</h1>
     </div>
   );
 }
@@ -23,7 +18,6 @@ export function CaseStudyHeader({
   subtitle,
   role,
   meta = [],
-  accent = "blue",
 }: {
   badge: string;
   title: string;
@@ -33,21 +27,15 @@ export function CaseStudyHeader({
   accent?: Accent;
 }) {
   return (
-    <div className="space-y-5 border-b border-slate-800 pb-8 mb-10">
-      <span className={`inline-block rounded-full border px-2.5 py-0.5 font-mono text-xs font-semibold uppercase ${accentBadge[accent]}`}>
-        {badge}
-      </span>
-      <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.1] text-slate-100">{title}</h1>
-      <p className="text-lg text-slate-300 leading-relaxed">{subtitle}</p>
-      <dl className="grid gap-3 font-mono text-xs sm:grid-cols-2">
-        <div className="rounded-lg border border-slate-800 bg-slate-950 p-3">
-          <dt className="text-[10px] uppercase text-slate-500">Role</dt>
-          <dd className="mt-0.5 text-slate-200">{role}</dd>
-        </div>
-        {meta.map(([k, v]) => (
-          <div key={k} className="rounded-lg border border-slate-800 bg-slate-950 p-3">
-            <dt className="text-[10px] uppercase text-slate-500">{k}</dt>
-            <dd className="mt-0.5 text-slate-200">{v}</dd>
+    <div className="mb-16 pt-6">
+      <p className="fig-label mb-6">{badge}</p>
+      <h1 className="text-4xl font-medium leading-[1.08] tracking-tight text-ink sm:text-6xl">{title}</h1>
+      <p className="mt-6 max-w-2xl text-xl leading-relaxed text-graphite">{subtitle}</p>
+      <dl className="mt-12 grid gap-x-10 gap-y-6 border-t border-rule pt-6 text-sm sm:grid-cols-2">
+        {[["Role", role] as [string, string], ...meta].map(([k, v]) => (
+          <div key={k}>
+            <dt className="fig-label mb-1.5">{k}</dt>
+            <dd className="leading-relaxed text-ink">{v}</dd>
           </div>
         ))}
       </dl>
@@ -55,28 +43,36 @@ export function CaseStudyHeader({
   );
 }
 
-export function MetricGrid({ metrics, accent = "blue" }: { metrics: [string, string][]; accent?: Accent }) {
+/** Large outcome numbers. Values like "78%" or "$1B" count up on scroll. */
+export function MetricGrid({ metrics }: { metrics: [string, string][]; accent?: Accent }) {
   return (
-    <div className="my-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-      {metrics.map(([value, label]) => (
-        <div key={label} className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
-          <div className={`font-mono text-2xl font-bold ${accent === "purple" ? "text-purple-300" : "text-emerald-400"}`}>{value}</div>
-          <div className="mt-1 text-sm leading-snug text-slate-400">{label}</div>
-        </div>
-      ))}
+    <div className="not-prose my-16 grid gap-10 sm:grid-cols-3">
+      {metrics.map(([value, label], i) => {
+        const m = value.match(/^([^0-9]*)(\d+)(.*)$/);
+        return (
+          <Reveal key={label} delay={i * 90}>
+            <div className="border-t border-ink pt-5">
+              <div className="text-6xl font-medium tracking-tight text-ink">
+                {m ? <CountUp to={Number(m[2])} prefix={m[1]} suffix={m[3]} /> : value}
+              </div>
+              <p className="mt-3 leading-snug text-graphite">{label}</p>
+            </div>
+          </Reveal>
+        );
+      })}
     </div>
   );
 }
 
-export function PhaseList({ phases, accent = "blue" }: { phases: [string, string][]; accent?: Accent }) {
+export function PhaseList({ phases }: { phases: [string, string][]; accent?: Accent }) {
   return (
-    <ol className="my-6 space-y-3">
+    <ol className="not-prose my-10 border-t border-rule">
       {phases.map(([title, body], i) => (
-        <li key={title} className="flex gap-4 rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-          <span className={`font-mono text-sm font-bold ${accentText[accent]}`}>{String(i + 1).padStart(2, "0")}</span>
+        <li key={title} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-rule py-5">
+          <span className="font-mono text-sm text-graphite">{String(i + 1).padStart(2, "0")}</span>
           <div>
-            <div className="font-semibold text-slate-100">{title}</div>
-            <div className="text-sm text-slate-400">{body}</div>
+            <div className="font-medium text-ink">{title}</div>
+            <div className="mt-1 leading-relaxed text-graphite">{body}</div>
           </div>
         </li>
       ))}
@@ -86,23 +82,27 @@ export function PhaseList({ phases, accent = "blue" }: { phases: [string, string
 
 export function PrincipleTable({ rows }: { rows: [string, string][] }) {
   return (
-    <div className="my-6 overflow-hidden rounded-xl border border-slate-800">
-      <table className="w-full text-left text-sm">
-        <thead className="bg-slate-900 font-mono text-xs uppercase text-slate-500">
-          <tr>
-            <th className="px-4 py-3 font-medium">Principle</th>
-            <th className="px-4 py-3 font-medium">In Practice</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-800">
-          {rows.map(([p, body]) => (
-            <tr key={p} className="align-top">
-              <td className="px-4 py-3 font-semibold text-slate-100 sm:whitespace-nowrap">{p}</td>
-              <td className="px-4 py-3 text-slate-300">{body}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <dl className="not-prose my-10 grid gap-px overflow-hidden rounded-2xl border border-rule bg-rule sm:grid-cols-2">
+      {rows.map(([p, body]) => (
+        <div key={p} className="bg-card p-6">
+          <dt className="font-medium text-ink">{p}</dt>
+          <dd className="mt-2 leading-relaxed text-graphite">{body}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+/** Impact by discipline, as a quiet 2x2 grid instead of a bullet wall. */
+export function ImpactGrid({ items }: { items: [string, string][] }) {
+  return (
+    <dl className="not-prose my-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+      {items.map(([k, v]) => (
+        <div key={k} className="border-t border-rule pt-4">
+          <dt className="fig-label mb-2">{k}</dt>
+          <dd className="leading-relaxed text-ink">{v}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }

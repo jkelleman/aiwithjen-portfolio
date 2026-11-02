@@ -6,7 +6,7 @@ export default function NotFound() {
       <p className="font-mono text-xs uppercase tracking-wider text-blue-400">404 · Route not found</p>
       <h1 className="text-3xl font-bold text-slate-100">This page isn’t part of the schema.</h1>
       <p className="text-slate-400">The link may be out of date, or the page may have moved.</p>
-      <Link href="/" className="inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 transition">
+      <Link href="/" className="inline-block rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-dark transition">
         Back to home
       </Link>
     </div>

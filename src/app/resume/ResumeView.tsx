@@ -196,7 +196,7 @@ export default function ResumeView() {
           <button
             type="button"
             onClick={() => window.print()}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition"
+            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-accent border border-slate-700 transition"
             title="Print Resume"
             aria-label="Print resume"
           >

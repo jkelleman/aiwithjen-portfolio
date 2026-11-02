@@ -1,38 +1,99 @@
 @import "tailwindcss";
 
-:root {
-  --background: #090d16;
-  --foreground: #f1f5f9;
+/*
+  Blueprint theme
+  ----------------
+  Three neutrals (ink, graphite, paper) + ONE accent.
+  Blue means exactly one thing: "you can click this."
+  Status colors (green = verified, red = failed) appear only inside live demos.
+
+  The slate ramp is inverted so legacy classes (text-slate-100 = headings,
+  bg-slate-950 = page) resolve to paper-and-ink. Every former accent hue
+  collapses into the single blue, and emerald (old "results") becomes ink.
+*/
+@theme {
+  --color-paper: #f7f6f2;
+  --color-card: #fbfaf7;
+  --color-ink: #1a1a1a;
+  --color-graphite: #6b6860;
+  --color-rule: #dedbd2;
+  --color-accent: #2347e8;
+  --color-accent-dark: #1b38c4;
+  --color-accent-wash: #eceffd;
+  --color-ok: #1f7a4d;
+  --color-fail: #b42318;
+
+  --color-slate-50: #111111;
+  --color-slate-100: #1a1a1a;
+  --color-slate-200: #262522;
+  --color-slate-300: #3d3b36;
+  --color-slate-400: #55524b;
+  --color-slate-500: #6b6860;
+  --color-slate-600: #9a978e;
+  --color-slate-700: #cfcbc0;
+  --color-slate-800: #dedbd2;
+  --color-slate-900: #fbfaf7;
+  --color-slate-950: #f7f6f2;
+
+  --color-blue-200: #2347e8;
+  --color-blue-300: #2347e8;
+  --color-blue-400: #2347e8;
+  --color-blue-500: #2347e8;
+  --color-blue-600: #2347e8;
+  --color-blue-900: #dfe5fc;
+  --color-blue-950: #eceffd;
+
+  --color-purple-300: #2347e8;
+  --color-purple-400: #2347e8;
+  --color-purple-500: #2347e8;
+  --color-purple-950: #eceffd;
+
+  --color-amber-300: #2347e8;
+  --color-amber-400: #2347e8;
+  --color-amber-500: #2347e8;
+  --color-amber-950: #eceffd;
+
+  --color-emerald-300: #1a1a1a;
+  --color-emerald-400: #1a1a1a;
+  --color-emerald-500: #1a1a1a;
+  --color-emerald-950: #fbfaf7;
+
+  --color-rose-300: #b42318;
+  --color-rose-400: #b42318;
+  --color-rose-950: #fdecea;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 html {
-  color-scheme: dark;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  /* Subtle engineering-grid overlay */
+  /* Engineering-paper grid, very faint */
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(26, 26, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgba(59, 130, 246, 0.35);
+  background: rgba(35, 71, 232, 0.18);
 }
 
-/* Code inside fenced blocks shouldn't get the inline-code pill */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 pre code {
   background: transparent !important;
   padding: 0 !important;
@@ -40,21 +101,99 @@ pre code {
   font-size: inherit !important;
 }
 
+/* Fig. labels: the one place mono type is used for decoration */
+.fig-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
+/* Link underline that draws in on hover */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Cursor-following spotlight on interactive cards (see Spotlight.tsx) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(35, 71, 232, 0.09),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Pipeline figure: dashed connectors that flow */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flow-line {
+  stroke-dasharray: 6 6;
+  animation: dash-flow 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .flow-line {
+    animation: none;
+  }
+  .spotlight::before,
+  .link-draw {
+    transition: none;
+  }
+}
+
 /* Custom scrollbars */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #334155 transparent;
-}
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 9999px;
+  scrollbar-color: #cfcbc0 transparent;
 }
 
-/* Print: clean light resume export */
+/* Print: clean resume export */
 @media print {
   @page {
     margin: 0.5in;

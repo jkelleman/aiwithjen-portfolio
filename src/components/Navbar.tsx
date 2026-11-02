@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileText, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/BrandIcons";
 
 const links = [
@@ -11,34 +11,34 @@ const links = [
 
 export default function Navbar() {
   return (
-    <header className="print:hidden sticky top-0 z-50 border-b border-slate-800/80 bg-[#090d16]/85 backdrop-blur-md">
-      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="font-mono text-sm font-semibold tracking-tight text-slate-100 hover:text-blue-400 transition shrink-0">
-          aiwithjen<span className="text-blue-400">.com</span>
+    <header className="print:hidden sticky top-0 z-50 border-b border-rule/70 bg-paper/85 backdrop-blur-md">
+      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+        <Link href="/" className="font-mono text-sm tracking-tight text-ink hover:text-accent transition-colors shrink-0">
+          jen kelleman
         </Link>
 
-        <div className="flex items-center gap-4 sm:gap-6 text-sm text-slate-300 overflow-x-auto">
+        <div className="flex items-center gap-5 sm:gap-8 text-[15px] text-graphite overflow-x-auto">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-white transition shrink-0">
+            <Link key={l.href} href={l.href} className="link-draw hover:text-accent transition-colors shrink-0">
               {l.label}
             </Link>
           ))}
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1 shrink-0">
           <Link
             href="/resume"
-            className="hidden sm:flex items-center gap-1.5 rounded-full border border-blue-500/40 bg-blue-950/50 px-3 py-1 text-xs font-semibold text-blue-200 hover:bg-blue-900/60 transition"
+            className="hidden sm:inline-flex items-center rounded-full border border-ink px-4 py-1.5 text-sm text-ink hover:border-accent hover:bg-accent hover:text-white transition-colors"
           >
-            <FileText className="h-3.5 w-3.5" /> Resume
+            Resume
           </Link>
-          <a href="https://github.com/jkelleman" target="_blank" rel="noreferrer" aria-label="GitHub" className="hidden md:block p-1.5 text-slate-400 hover:text-white transition">
+          <a href="https://github.com/jkelleman" target="_blank" rel="noreferrer" aria-label="GitHub" className="hidden md:block p-2 text-graphite hover:text-accent transition-colors">
             <GitHubIcon className="h-4 w-4" />
           </a>
-          <a href="https://linkedin.com/in/jenniferkelleman" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hidden md:block p-1.5 text-slate-400 hover:text-white transition">
+          <a href="https://linkedin.com/in/jenniferkelleman" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hidden md:block p-2 text-graphite hover:text-accent transition-colors">
             <LinkedInIcon className="h-4 w-4" />
           </a>
-          <a href="mailto:jen@aiwithjen.com" aria-label="Email" className="hidden md:block p-1.5 text-slate-400 hover:text-white transition">
+          <a href="mailto:jen@aiwithjen.com" aria-label="Email" className="hidden md:block p-2 text-graphite hover:text-accent transition-colors">
             <Mail className="h-4 w-4" />
           </a>
         </div>

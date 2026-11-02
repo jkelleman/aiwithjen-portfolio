@@ -89,9 +89,9 @@ export default function FabricAgentTaskCenter() {
   const mmss = `${String(Math.floor(elapsed / 60)).padStart(2, "0")}:${String(elapsed % 60).padStart(2, "0")}`;
 
   return (
-    <figure className="my-10 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 font-mono text-xs not-prose">
+    <figure className="my-10 overflow-hidden rounded-2xl border border-rule bg-card font-mono text-xs not-prose">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 bg-slate-900/70 px-4 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-rule bg-paper px-4 py-3">
         <div className="flex items-center gap-2 text-slate-200">
           <span className="h-2 w-2 rounded-full bg-blue-400" />
           <span className="font-semibold">Fabric Agent Task Center</span>
@@ -116,7 +116,7 @@ export default function FabricAgentTaskCenter() {
             <li
               key={p.id}
               className={`flex items-center gap-2 bg-slate-950 px-4 py-2.5 ${
-                state === "active" ? "text-blue-300" : state === "done" ? "text-emerald-400" : "text-slate-600"
+                state === "active" ? "text-blue-300" : state === "done" ? "text-ok" : "text-slate-600"
               }`}
             >
               {state === "done" ? (
@@ -140,11 +140,11 @@ export default function FabricAgentTaskCenter() {
               key={i}
               className={
                 line.startsWith("✖")
-                  ? "text-rose-400"
+                  ? "text-fail"
                   : line.startsWith("⚠")
-                    ? "text-amber-300"
+                    ? "text-ink font-semibold"
                     : line.startsWith("✔")
-                      ? "text-emerald-400"
+                      ? "text-ok"
                       : "text-slate-400"
               }
             >
@@ -168,15 +168,15 @@ export default function FabricAgentTaskCenter() {
           </div>
 
           {phase === "awaiting_approval" && (
-            <div className="space-y-2 rounded-lg border border-amber-500/30 bg-amber-950/20 p-3">
-              <div className="flex items-center gap-1.5 font-semibold text-amber-300">
+            <div className="space-y-2 rounded-lg border border-accent/40 bg-accent-wash p-3">
+              <div className="flex items-center gap-1.5 font-semibold text-ink">
                 <ShieldCheck className="h-3.5 w-3.5" /> Guardrail gate
               </div>
               <p className="text-slate-400">Destructive write: OVERWRITE on 1 partition set.</p>
               <button
                 type="button"
                 onClick={() => setPhase("running_remote")}
-                className="flex w-full items-center justify-center gap-1.5 rounded-md bg-blue-600 px-3 py-1.5 font-semibold text-white hover:bg-blue-500 transition"
+                className="flex w-full items-center justify-center gap-1.5 rounded-md bg-accent px-3 py-1.5 font-semibold text-white hover:bg-accent-dark transition"
               >
                 <Play className="h-3.5 w-3.5" /> Approve & run
               </button>
@@ -196,7 +196,7 @@ export default function FabricAgentTaskCenter() {
               {showDiff && (
                 <pre className="overflow-x-auto rounded-md border border-slate-800 bg-slate-900 p-2 text-[10px] leading-relaxed">
                   {DIFF.map((d) => (
-                    <div key={d.sign} className={d.sign === "+" ? "text-emerald-400" : "text-rose-400"}>
+                    <div key={d.sign} className={d.sign === "+" ? "text-ok" : "text-fail"}>
                       {d.sign} {d.text}
                     </div>
                   ))}

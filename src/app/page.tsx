@@ -1,549 +1,239 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  FileText,
-  Mail,
-  ExternalLink,
-  Code2,
-  Sparkles,
-  Layers,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { CountUp, Reveal, Spotlight } from "@/components/Motion";
+import { CopyDiff, type CopyPair } from "@/components/CopyDiff";
 
-function GitHubIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      className={className}
-    >
-      <path d="M12 2C6.477 2 2 6.586 2 12.253c0 4.526 2.865 8.367 6.839 9.722.5.094.682-.222.682-.486 0-.24-.009-.875-.014-1.717-2.782.62-3.369-1.372-3.369-1.372-.455-1.18-1.11-1.494-1.11-1.494-.908-.638.069-.625.069-.625 1.004.072 1.532 1.056 1.532 1.056.892 1.566 2.341 1.114 2.91.852.091-.663.35-1.114.636-1.371-2.22-.259-4.555-1.14-4.555-5.075 0-1.121.39-2.038 1.029-2.757-.103-.258-.447-1.302.098-2.714 0 0 .84-.275 2.75 1.052A9.35 9.35 0 0 1 12 6.844c.85.004 1.705.117 2.504.343 1.909-1.327 2.747-1.052 2.747-1.052.547 1.412.203 2.456.1 2.714.64.719 1.028 1.636 1.028 2.757 0 3.946-2.338 4.813-4.566 5.067.359.318.679.944.679 1.904 0 1.374-.013 2.481-.013 2.818 0 .266.18.585.688.485C19.138 20.616 22 16.776 22 12.253 22 6.586 17.523 2 12 2Z" />
-    </svg>
-  );
-}
+const work = [
+  {
+    fig: "Fig. 01 · Microsoft Fabric",
+    href: "/work/project-osmos",
+    title: "Project Osmos",
+    line: "Designing the autonomous data engineer: guardrails, handoffs, and self-healing for an agent that runs while you sleep.",
+    value: 78,
+    suffix: "%",
+    unit: "less manual pipeline authoring",
+  },
+  {
+    fig: "Fig. 02 · Data systems",
+    href: "/work/enterprise-semantic-layer",
+    title: "The enterprise semantic layer",
+    line: "Taxonomies and metadata contracts that turned lakehouse plumbing into metrics people and agents can query precisely.",
+    value: 94,
+    suffix: "%",
+    unit: "retrieval precision for AI agents",
+  },
+];
 
-function LinkedInIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      className={className}
-    >
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  );
-}
+const rewrites: CopyPair[] = [
+  {
+    context: "Error message",
+    before: "Error 0x80004005: Operation failed.",
+    after: "Couldn’t write to sales_orders. The order_date column expects a date but got text in 3 rows. Convert them, or review the rows.",
+    why: "What happened, where, and the next step. The same structure is parseable by an agent.",
+  },
+  {
+    context: "Agent status",
+    before: "Working on it…",
+    after: "Running in Fabric · step 3 of 7. You can close your terminal; the job keeps going.",
+    why: "State, progress, and what the person can safely do now.",
+  },
+  {
+    context: "Approval gate",
+    before: "Are you sure you want to continue?",
+    after: "This overwrites 1 partition (12,480 rows) in sales_orders. Approve, or review the plan first.",
+    why: "Name the consequence before asking for consent.",
+  },
+];
+
+const code = [
+  {
+    name: "prompt-ops-eval-harness",
+    line: "Catches hallucinated columns and unsafe writes before an agent’s plan reaches Spark.",
+    href: "https://github.com/jkelleman/prompt-ops-eval-harness",
+    live: "https://prompt-ops-eval-harness.streamlit.app",
+  },
+  {
+    name: "fabric-agent-canvas",
+    line: "React components for human-in-the-loop agent interfaces.",
+    href: "https://github.com/jkelleman/fabric-agent-canvas",
+  },
+  {
+    name: "semantic-metrics-modeling-assistant",
+    line: "MCP agent for governed metric definitions with trust scoring.",
+    href: "https://github.com/jkelleman/semantic-metrics-modeling-assistant",
+  },
+];
+
+const essays = [
+  {
+    title: "Designing the semantic layer: Where language meets data architecture",
+    href: "https://medium.com/@jenkelleman/designing-the-semantic-layer-where-language-meets-data-architecture-983ea628fbdd",
+  },
+  {
+    title: "Designing for judgment: What AI can’t see (yet)",
+    href: "https://medium.com/@jenkelleman/designing-for-judgment-what-ai-cant-see-yet-46497aa88d19",
+  },
+];
 
 export default function HomePage() {
   return (
-    <div className="space-y-24 pb-12">
-      {/* 1. POSITIONING HERO & QUICK ACCESS DOCK */}
-      <section className="pt-6 sm:pt-12 space-y-8">
-        <div className="space-y-4 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-blue-950/40 text-blue-300 border border-blue-500/30">
-            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-            <span>Content Design Engineering & AI Systems Architecture</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-100 leading-[1.1]">
-            Bridging language systems, lakehouse architecture, and autonomous
-            AI.
+    <div className="pb-8">
+      {/* HERO */}
+      <section className="pt-24 pb-32 sm:pt-36 sm:pb-44">
+        <Reveal>
+          <p className="fig-label mb-8">Fig. 00 · Jen Kelleman, content design engineer</p>
+        </Reveal>
+        <Reveal delay={80}>
+          <h1 className="max-w-4xl text-[2.6rem] leading-[1.05] font-medium tracking-tight text-ink sm:text-7xl">
+            I design the language layer of AI systems.
           </h1>
-
-          <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
-            I’m Jen Kelleman. I design the semantic layers, deterministic
-            prompt infrastructure, and cross-surface state machines that
-            transform non-deterministic models into verifiable enterprise
-            agents.
+        </Reveal>
+        <Reveal delay={160}>
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-graphite sm:text-xl">
+            Content design engineering and agentic AI strategy at Microsoft. I make autonomous agents legible,
+            recoverable, and safe to trust.
           </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2 pt-1">
-          {[
-            "Agentic Orchestration",
-            "Semantic Layers",
-            "Prompt Evals & Schema Contracts",
-            "Microsoft Fabric & OneLake",
-            "Autonomous Self-Healing",
-            "Human-in-the-Loop UX",
-          ].map((tag) => (
-            <span
-              key={tag}
-              className="text-xs font-mono px-3 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-300"
+        </Reveal>
+        <Reveal delay={240}>
+          <div className="mt-12 flex flex-wrap items-center gap-6">
+            <Link
+              href="#work"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-white transition-colors hover:bg-accent-dark"
             >
-              {tag}
-            </span>
+              See the work <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href="/resume" className="link-draw text-accent">
+              Read the resume
+            </Link>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* SELECTED WORK */}
+      <section id="work" className="scroll-mt-24 pb-36">
+        <Reveal>
+          <p className="fig-label mb-10">Selected work</p>
+        </Reveal>
+        <div className="grid gap-6 md:grid-cols-2">
+          {work.map((w, i) => (
+            <Reveal key={w.href} delay={i * 100}>
+              <Spotlight className="h-full rounded-2xl">
+                <Link
+                  href={w.href}
+                  className="group flex h-full flex-col rounded-2xl border border-rule bg-card/80 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent sm:p-10"
+                >
+                  <span className="fig-label">{w.fig}</span>
+                  <span className="mt-16 block text-7xl font-medium tracking-tight text-ink sm:text-8xl">
+                    <CountUp to={w.value} suffix={w.suffix} />
+                  </span>
+                  <span className="mt-2 block text-graphite">{w.unit}</span>
+                  <span className="mt-12 block text-2xl font-medium text-ink transition-colors group-hover:text-accent">
+                    {w.title}
+                  </span>
+                  <span className="mt-3 block max-w-md leading-relaxed text-graphite">{w.line}</span>
+                  <span className="mt-8 inline-flex items-center gap-2 text-accent">
+                    Read the case study
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </Spotlight>
+            </Reveal>
           ))}
         </div>
-
-        <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
-          <span className="text-slate-400 font-semibold tracking-wider uppercase text-[11px]">
-            Quick Access:
-          </span>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-slate-300">
-            <Link
-              href="#featured-work"
-              className="hover:text-blue-400 transition flex items-center gap-1"
-            >
-              <span>Case Studies</span> ↓
-            </Link>
-            <Link
-              href="#code-repos"
-              className="hover:text-blue-400 transition flex items-center gap-1"
-            >
-              <span>GitHub Repos</span> ↓
-            </Link>
-            <Link
-              href="#writing"
-              className="hover:text-blue-400 transition flex items-center gap-1"
-            >
-              <span>Thought Leadership</span> ↓
-            </Link>
-            <Link
-              href="/resume"
-              className="hover:text-blue-400 transition flex items-center gap-1 font-semibold text-blue-300"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Resume (PDF)</span>
-            </Link>
-            <Link
-              href="#contact"
-              className="hover:text-blue-400 transition flex items-center gap-1"
-            >
-              <span>Contact</span> ↓
-            </Link>
-          </div>
-        </div>
       </section>
 
-      {/* 2. FEATURED CASE STUDIES */}
-      <section id="featured-work" className="space-y-8 scroll-mt-24">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
-              Featured Case Studies
-            </h2>
-            <p className="text-sm text-slate-400 mt-1">
-              Production systems bridging autonomous model execution, semantic
-              clarity, and lakehouse plumbing.
-            </p>
-          </div>
-          <Link
-            href="/work"
-            className="text-xs font-mono text-blue-400 hover:text-blue-300 flex items-center gap-1"
-          >
-            <span>View All Architecture</span>{" "}
-            <ArrowRight className="w-3.5 h-3.5" />
+      {/* SHOW, DON'T TELL: REWRITES */}
+      <section className="pb-36">
+        <Reveal>
+          <p className="fig-label mb-4">Fig. 03 · Language as infrastructure</p>
+          <h2 className="max-w-2xl text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl">
+            Words decide whether an agent’s failure is recoverable.
+          </h2>
+          <p className="mt-4 mb-12 max-w-xl text-graphite">
+            Hover or tap each card to see the rewrite. Illustrative patterns from my practice.
+          </p>
+        </Reveal>
+        <Reveal>
+          <CopyDiff pairs={rewrites} />
+        </Reveal>
+      </section>
+
+      {/* CODE */}
+      <section className="grid gap-12 pb-36 md:grid-cols-[1fr_2fr]">
+        <Reveal>
+          <p className="fig-label mb-4">Fig. 04 · Open source</p>
+          <h2 className="text-3xl font-medium tracking-tight text-ink">Working code, not just specs.</h2>
+          <Link href="/code" className="link-draw mt-6 inline-block text-accent">
+            All projects
           </Link>
-        </div>
-
-        <div className="grid grid-cols-1 gap-8">
-          <article className="group rounded-2xl border border-slate-800 bg-slate-900/40 hover:bg-slate-900/70 hover:border-slate-700 transition-all p-6 sm:p-8 flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-center gap-2 font-mono text-xs text-blue-400">
-                  <span className="px-2.5 py-0.5 rounded-full bg-blue-950/60 border border-blue-500/30 font-semibold uppercase">
-                    Flagship System
-                  </span>
-                  <span>•</span>
-                  <span>Microsoft Fabric OneLake</span>
+        </Reveal>
+        <ul className="border-t border-rule">
+          {code.map((c, i) => (
+            <Reveal as="li" key={c.name} delay={i * 80} className="border-b border-rule">
+              <div className="group flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+                <div>
+                  <a
+                    href={c.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 font-mono text-[15px] text-ink transition-colors hover:text-accent"
+                  >
+                    {c.name}
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
+                  </a>
+                  <p className="mt-1.5 text-graphite">{c.line}</p>
                 </div>
-                <span className="text-xs font-mono text-slate-500">
-                  2026 Preview
-                </span>
+                {c.live && (
+                  <a href={c.live} target="_blank" rel="noreferrer" className="link-draw shrink-0 text-sm text-accent">
+                    Try the live demo
+                  </a>
+                )}
               </div>
-
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 group-hover:text-blue-400 transition-colors">
-                <Link href="/work/project-osmos">
-                  Designing the Autonomous Data Engineer: Project Osmos
-                </Link>
-              </h3>
-
-              <p className="text-slate-300 leading-relaxed text-sm sm:text-base max-w-4xl">
-                Orchestrating autonomous tool-use, non-deterministic Spark
-                planning, and persistent cross-surface execution. Decoupled
-                local CLI terminals (Copilot CLI, Claude Code) from remote
-                OneLake runtime, establishing deterministic pre-flight
-                guardrail gates and self-healing runtime recovery loops.
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs font-mono">
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    Scaffolding Velocity
-                  </span>
-                  <span className="font-bold text-emerald-400">
-                    78% Reduction
-                  </span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    Write Safety
-                  </span>
-                  <span className="font-bold text-emerald-400">
-                    0% Silent Failures
-                  </span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    State Architecture
-                  </span>
-                  <span className="font-bold text-slate-200">
-                    Session-Decoupled
-                  </span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    Stack
-                  </span>
-                  <span className="font-bold text-slate-200 truncate block">
-                    Fabric, Spark, CLI
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-slate-800/80 text-xs font-mono">
-              <span className="text-slate-400">
-                Role: Lead Content Design Engineer & Agentic Systems Architect
-              </span>
-              <Link
-                href="/work/project-osmos"
-                className="text-blue-400 hover:text-blue-300 flex items-center gap-1 font-semibold"
-              >
-                <span>Read Full Case Study</span> →
-              </Link>
-            </div>
-          </article>
-
-          <article className="group rounded-2xl border border-slate-800 bg-slate-900/40 hover:bg-slate-900/70 hover:border-slate-700 transition-all p-6 sm:p-8 flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-center gap-2 font-mono text-xs text-purple-400">
-                  <span className="px-2.5 py-0.5 rounded-full bg-purple-950/60 border border-purple-500/30 font-semibold uppercase">
-                    Data Systems & UX
-                  </span>
-                  <span>•</span>
-                  <span>Enterprise Catalog Architecture</span>
-                </div>
-                <span className="text-xs font-mono text-slate-500">
-                  Production
-                </span>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 group-hover:text-purple-400 transition-colors">
-                <Link href="/work/enterprise-semantic-layer">
-                  Architecting the Enterprise Semantic Layer: Lakehouse
-                  Plumbing into Human Intuition
-                </Link>
-              </h3>
-
-              <p className="text-slate-300 leading-relaxed text-sm sm:text-base max-w-4xl">
-                Designed the semantic catalog, taxonomy systems, and
-                standardized naming grammars that bridged distributed lakehouse
-                storage with human analytics and autonomous agent
-                retrieval—driving a 62% reduction in ad-hoc metric disputes and
-                raising AI tool-call precision to 94%.
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs font-mono">
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    Metric Governance
-                  </span>
-                  <span className="font-bold text-emerald-400">
-                    62% Ticket Drop
-                  </span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    Agent Retrieval
-                  </span>
-                  <span className="font-bold text-emerald-400">
-                    94% Precision
-                  </span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    Token Efficiency
-                  </span>
-                  <span className="font-bold text-slate-200">
-                    -68% Context Load
-                  </span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80">
-                  <span className="text-slate-500 block text-[10px] uppercase">
-                    Core Paradigm
-                  </span>
-                  <span className="font-bold text-slate-200">
-                    3-Tier Ontology
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-slate-800/80 text-xs font-mono">
-              <span className="text-slate-400">
-                Role: Lead Content Design Engineer & Systems Architect
-              </span>
-              <Link
-                href="/work/enterprise-semantic-layer"
-                className="text-purple-400 hover:text-purple-300 flex items-center gap-1 font-semibold"
-              >
-                <span>Read Full Case Study</span> →
-              </Link>
-            </div>
-          </article>
-        </div>
+            </Reveal>
+          ))}
+        </ul>
       </section>
 
-      {/* 3. OPEN-SOURCE REPOSITORIES */}
-      <section id="code-repos" className="space-y-8 scroll-mt-24">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
-              Open-Source & Applied AI
-            </h2>
-            <p className="text-sm text-slate-400 mt-1">
-              Production code, prompt evaluation harnesses, and interactive
-              components proving technical rigor.
-            </p>
-          </div>
-          <a
-            href="https://github.com/jkelleman"
-            target="_blank"
-            rel="noreferrer"
-            className="text-xs font-mono text-blue-400 hover:text-blue-300 flex items-center gap-1"
-          >
-            <span>github.com/jkelleman</span>{" "}
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-xl border border-slate-800 bg-slate-900/50 hover:border-slate-700 transition flex flex-col justify-between space-y-5">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                <span className="flex items-center gap-1.5 text-blue-300 font-semibold">
-                  <Code2 className="w-4 h-4 text-blue-400" />
-                  prompt-ops-eval-harness
-                </span>
-                <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">
-                  Python 3.11+ / Pydantic v2
-                </span>
-              </div>
-
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Evaluation framework for benchmarking autonomous lakehouse
-                agent workflows. Enforces strict schema precision, catches
-                column hallucinations, and tests AST self-healing recovery
-                before Spark execution.
-              </p>
-
-              <div className="p-3 bg-slate-950 rounded border border-slate-800 font-mono text-xs space-y-1">
-                <div className="text-emerald-400">
-                  ✔ Schema Precision: 100% (10-case eval suite)
-                </div>
-                <div className="text-emerald-400">
-                  ✔ Self-Healing Recovery: 100%
-                </div>
-                <div className="text-slate-400">
-                  ⚡ Capacity Unit (CU) Budget Guard Included
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-slate-800/80 text-xs font-mono">
+      {/* WRITING */}
+      <section className="grid gap-12 pb-36 md:grid-cols-[1fr_2fr]">
+        <Reveal>
+          <p className="fig-label mb-4">Fig. 05 · Writing</p>
+          <h2 className="text-3xl font-medium tracking-tight text-ink">Thinking in public.</h2>
+          <Link href="/writing" className="link-draw mt-6 inline-block text-accent">
+            All essays
+          </Link>
+        </Reveal>
+        <ul className="border-t border-rule">
+          {essays.map((e, i) => (
+            <Reveal as="li" key={e.href} delay={i * 80} className="border-b border-rule">
               <a
-                href="https://github.com/jkelleman/prompt-ops-eval-harness"
+                href={e.href}
                 target="_blank"
                 rel="noreferrer"
-                className="text-blue-400 hover:text-blue-300 flex items-center gap-1"
+                className="group flex items-baseline justify-between gap-6 py-6 text-lg text-ink transition-colors hover:text-accent"
               >
-                <span>View GitHub Repo</span>{" "}
-                <ExternalLink className="w-3 h-3" />
+                {e.title}
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-graphite transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
               </a>
-              <a href="https://prompt-ops-eval-harness.streamlit.app" target="_blank" rel="noreferrer" className="text-emerald-400 hover:text-emerald-300">
-                Live Streamlit Demo ↗
-              </a>
-            </div>
-          </div>
-
-          <div className="p-6 rounded-xl border border-slate-800 bg-slate-900/50 hover:border-slate-700 transition flex flex-col justify-between space-y-5">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                <span className="flex items-center gap-1.5 text-purple-300 font-semibold">
-                  <Layers className="w-4 h-4 text-purple-400" />
-                  fabric-agent-canvas
-                </span>
-                <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">
-                  React 19 / TypeScript
-                </span>
-              </div>
-
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Component library and state orchestrator modeling the handoff
-                between developer terminals and cloud lakehouse workspaces.
-                Features decoupled indicators, guardrail review cards, and
-                diagnostic diff drawers.
-              </p>
-
-              <div className="p-3 bg-slate-950 rounded border border-slate-800 font-mono text-xs space-y-1">
-                <div className="text-purple-300">
-                  • &lt;AgentStateIndicator&gt; (6 Autonomy States)
-                </div>
-                <div className="text-purple-300">
-                  • &lt;GuardrailGateCard&gt; (Pre-flight Review)
-                </div>
-                <div className="text-purple-300">
-                  • &lt;RecoveryTelemetryBanner&gt; (In-Memory AST Diffs)
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-slate-800/80 text-xs font-mono">
-              <Link
-                href="/work/project-osmos#canvas-mockup"
-                className="text-purple-400 hover:text-purple-300 flex items-center gap-1"
-              >
-                <span>Inspect Live Component</span> →
-              </Link>
-              <span className="text-slate-500">Tailwind + Lucide</span>
-            </div>
-          </div>
-        </div>
+            </Reveal>
+          ))}
+        </ul>
       </section>
 
-      {/* 4. THOUGHT LEADERSHIP & ESSAYS */}
-      <section id="writing" className="space-y-8 scroll-mt-24">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
-              Thought Leadership & Architecture Writing
-            </h2>
-            <p className="text-sm text-slate-400 mt-1">
-              Curated essays connecting language infrastructure, lakehouse
-              usability, and human judgment.
-            </p>
-          </div>
-          <Link
-            href="/writing"
-            className="text-xs font-mono text-blue-400 hover:text-blue-300 flex items-center gap-1"
-          >
-            <span>Explore Writing Hub</span>{" "}
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 transition flex flex-col justify-between space-y-4">
-            <div className="space-y-2">
-              <span className="text-xs font-mono text-blue-400">
-                Semantic Architecture · 8 min read
-              </span>
-              <h3 className="text-lg font-semibold text-slate-100">
-                Designing the Semantic Layer: Where Language Meets Data
-                Architecture
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Why language is not aesthetic decoration for dashboards, but
-                the fundamental contract connecting distributed OneLake storage
-                to autonomous agent retrieval.
-              </p>
-            </div>
-            <div className="text-xs font-mono flex items-center justify-between pt-3 border-t border-slate-800">
-              <span className="text-slate-500">Applied in: Semantic Layer</span>
-              <Link
-                href="/work/enterprise-semantic-layer"
-                className="text-blue-400 hover:underline"
-              >
-                View Spec →
-              </Link>
-            </div>
-          </div>
-
-          <div className="p-6 rounded-xl border border-slate-800 bg-slate-900/30 hover:border-slate-700 transition flex flex-col justify-between space-y-4">
-            <div className="space-y-2">
-              <span className="text-xs font-mono text-amber-400">
-                Human-in-the-Loop · 7 min read
-              </span>
-              <h3 className="text-lg font-semibold text-slate-100">
-                Designing for Judgment: What AI Can’t See (Yet)
-              </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Autonomous workflows fail in the enterprise not because models
-                lack speed, but because interfaces fail to design for the
-                friction of human judgment.
-              </p>
-            </div>
-            <div className="text-xs font-mono flex items-center justify-between pt-3 border-t border-slate-800">
-              <span className="text-slate-500">Applied in: Project Osmos</span>
-              <Link
-                href="/work/project-osmos#guardrails"
-                className="text-amber-400 hover:underline"
-              >
-                View Spec →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. DIRECT CONTACT & FOOTER CARD */}
-      <section
-        id="contact"
-        className="p-8 sm:p-10 rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-md space-y-6 scroll-mt-24"
-      >
-        <div className="max-w-2xl space-y-2">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
-            Let’s Build Resilient AI Systems
-          </h2>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            I partner with teams building at the frontier of autonomous agent
-            workflows, enterprise semantic layers, and developer platforms.
-            Based in Somerville, MA (Greater Boston Area) and open to strategic
-            leadership roles.
+      {/* CONTACT */}
+      <section id="contact" className="scroll-mt-24 border-t border-rule pt-24">
+        <Reveal>
+          <p className="fig-label mb-6">Contact</p>
+          <p className="max-w-3xl text-4xl font-medium leading-tight tracking-tight text-ink sm:text-5xl">
+            Building agents people need to trust? Let’s talk.
           </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4 pt-2">
           <a
             href="mailto:jen@aiwithjen.com"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white transition"
+            className="link-draw mt-10 inline-block text-2xl text-accent sm:text-3xl"
           >
-            <Mail className="w-4 h-4" />
-            <span>jen@aiwithjen.com</span>
+            jen@aiwithjen.com
           </a>
-
-          <Link
-            href="/resume"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition"
-          >
-            <FileText className="w-4 h-4" />
-            <span>View Full Resume</span>
-          </Link>
-
-          <a
-            href="https://github.com/jkelleman"
-            target="_blank"
-            rel="noreferrer"
-            className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition"
-            aria-label="GitHub Profile"
-          >
-            <GitHubIcon className="w-4 h-4" />
-          </a>
-
-          <a
-            href="https://linkedin.com/in/jenniferkelleman"
-            target="_blank"
-            rel="noreferrer"
-            className="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition"
-            aria-label="LinkedIn Profile"
-          >
-            <LinkedInIcon className="w-4 h-4" />
-          </a>
-        </div>
+        </Reveal>
       </section>
     </div>
   );

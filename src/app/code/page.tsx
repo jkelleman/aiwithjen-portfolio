@@ -170,7 +170,7 @@ function RepoLink({ url }: { url: string | null }) {
     );
   }
   return (
-    <a href={url} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white flex items-center gap-1">
+    <a href={url} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-accent flex items-center gap-1">
       <span>GitHub</span> <ExternalLink className="w-3 h-3" />
     </a>
   );
@@ -226,7 +226,7 @@ function ProjectCard({ project }: { project: Project }) {
         )}
         <div className="flex items-center gap-3">
           {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="text-accent hover:text-accent-dark flex items-center gap-1">
               <span>Live App</span> <ExternalLink className="w-3 h-3" />
             </a>
           )}
