@@ -194,11 +194,11 @@ export function Stage({ id, n, label }: { id: string; n: number; label: string }
 }
 
 /** The problem statement, set large. */
-export function HowMightWe({ children, note }: { children: ReactNode; note?: string }) {
+export function HowMightWe({ statement, children, note }: { statement?: string; children?: ReactNode; note?: string }) {
   return (
     <figure className="not-prose my-12 border-l-2 border-accent pl-6">
       <p className="fig-label mb-3">Problem statement</p>
-      <blockquote className="text-2xl font-medium leading-snug tracking-tight text-ink sm:text-3xl">{children}</blockquote>
+      <blockquote className="text-2xl font-medium leading-snug tracking-tight text-ink sm:text-3xl [&_p]:m-0 [&_p]:text-[length:inherit] [&_p]:leading-[inherit] [&_p]:text-ink">{statement ?? children}</blockquote>
       {note && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-graphite">{note}</figcaption>}
     </figure>
   );
