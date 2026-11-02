@@ -31,7 +31,7 @@ export function CopyDiff({ pairs }: { pairs: CopyPair[] }) {
             onMouseLeave={() => setHovered(null)}
             onFocus={() => setHovered(i)}
             onBlur={() => setHovered(null)}
-            className="group flex min-h-[19rem] flex-col bg-card p-7 text-left transition-colors hover:bg-paper focus-visible:bg-paper"
+            className="group flex min-h-[17rem] flex-col bg-card p-7 text-left transition-colors hover:bg-paper focus-visible:bg-paper"
           >
             <span className="fig-label mb-6">{p.context}</span>
 
@@ -45,7 +45,7 @@ export function CopyDiff({ pairs }: { pairs: CopyPair[] }) {
               </span>
               <span
                 className={`mt-4 block text-[17px] leading-relaxed text-ink transition-all duration-300 ${
-                  open ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+                  open ? "translate-y-0 opacity-100 blur-0" : "select-none opacity-35 blur-[5px]"
                 }`}
               >
                 {p.after}

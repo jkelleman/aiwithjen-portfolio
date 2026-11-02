@@ -183,7 +183,7 @@ export default function ResumeView() {
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-100 flex items-center gap-2">
             <span>Jen Kelleman</span>
-            <span className="text-xs font-mono font-normal px-2.5 py-0.5 rounded-full bg-blue-950/80 text-blue-300 border border-blue-500/30">
+            <span className="text-xs font-mono font-normal px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-400 border border-slate-800">
               Verified Experience
             </span>
           </h1>
@@ -238,7 +238,7 @@ export default function ResumeView() {
       <div className="p-8 sm:p-12 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-12">
         <section className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
-            <h2 className="text-sm font-mono uppercase tracking-wider text-blue-400 font-semibold flex items-center gap-2">
+            <h2 className="text-sm font-mono uppercase tracking-wider text-slate-500 font-semibold flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
               Executive Profile
             </h2>
@@ -267,7 +267,7 @@ export default function ResumeView() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-sm font-mono uppercase tracking-wider text-blue-400 font-semibold border-b border-slate-800 pb-3">
+          <h2 className="text-sm font-mono uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-800 pb-3">
             Core Competencies & Tooling
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
@@ -286,7 +286,7 @@ export default function ResumeView() {
         </section>
 
         <section className="space-y-8">
-          <h2 className="text-sm font-mono uppercase tracking-wider text-blue-400 font-semibold border-b border-slate-800 pb-3 flex items-center gap-2">
+          <h2 className="text-sm font-mono uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-800 pb-3 flex items-center gap-2">
             <Briefcase className="w-4 h-4" />
             Professional Experience
           </h2>
@@ -299,7 +299,7 @@ export default function ResumeView() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                   <div>
                     <h3 className="text-base font-bold text-slate-100">{role.title}</h3>
-                    <span className="text-xs font-mono text-blue-400">{role.org}</span>
+                    <span className="text-xs font-mono text-slate-500">{role.org}</span>
                   </div>
                   <span className="text-xs font-mono text-slate-400">{role.dates}</span>
                 </div>
@@ -321,7 +321,7 @@ export default function ResumeView() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-sm font-mono uppercase tracking-wider text-blue-400 font-semibold border-b border-slate-800 pb-3 flex items-center gap-2">
+          <h2 className="text-sm font-mono uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-800 pb-3 flex items-center gap-2">
             <GraduationCap className="w-4 h-4" />
             Education & Academic Rigor
           </h2>
@@ -333,7 +333,7 @@ export default function ResumeView() {
             ].map(([school, degree, detail]) => (
               <div key={school} className="p-4 rounded-lg bg-slate-950 border border-slate-800">
                 <span className="font-bold text-slate-200 block text-sm">{school}</span>
-                <span className="text-blue-400 block mt-0.5">{degree}</span>
+                <span className="text-slate-500 block mt-0.5">{degree}</span>
                 <span className="text-slate-400 block">{detail}</span>
               </div>
             ))}
@@ -341,7 +341,7 @@ export default function ResumeView() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-sm font-mono uppercase tracking-wider text-blue-400 font-semibold border-b border-slate-800 pb-3 flex items-center gap-2">
+          <h2 className="text-sm font-mono uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-800 pb-3 flex items-center gap-2">
             <Award className="w-4 h-4" />
             Awards, Certifications & Leadership
           </h2>
