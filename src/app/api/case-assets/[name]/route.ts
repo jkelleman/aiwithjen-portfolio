@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ name: s
     return new NextResponse("Not found", { status: 404 });
   }
 
-  const result = await get(`pipeline-copilot/${name}`, { access: "private" });
+  const result = await get(name, { access: "private" });
   if (!result || result.statusCode !== 200 || !result.stream) {
     return new NextResponse("Not found", { status: 404 });
   }

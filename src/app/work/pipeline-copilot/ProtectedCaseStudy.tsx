@@ -33,7 +33,7 @@ export async function ProtectedCaseStudy() {
     redirect(`/unlock?next=${encodeURIComponent(PROTECTED_PREFIX)}`);
   }
 
-  const result = await get("pipeline-copilot/case-study.mdx", { access: "private" });
+  const result = await get("case-study.mdx", { access: "private" });
   if (!result || result.statusCode !== 200 || !result.stream) {
     return (
       <div className="pt-10">

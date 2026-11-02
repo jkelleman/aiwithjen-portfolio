@@ -1,5 +1,5 @@
 // Files for the protected Pipeline Copilot case study.
-// They live in a private Vercel Blob store under "pipeline-copilot/<name>"
+// They live at the top level of a private Vercel Blob store dedicated to this case study
 // and are served only through /api/case-assets/<name> after the password check.
 // Descriptions and alt text live with the private content, not in this public repo.
 
