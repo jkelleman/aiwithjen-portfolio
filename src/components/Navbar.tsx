@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Mail } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/BrandIcons";
+import { mailto } from "@/lib/contact";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -31,6 +33,9 @@ export default function Navbar() {
           >
             Resume
           </Link>
+          <a href={mailto()} aria-label="Email" className="hidden md:block p-2 text-graphite hover:text-accent transition-colors">
+            <Mail className="h-4 w-4" />
+          </a>
           <a href="https://github.com/jkelleman" target="_blank" rel="noreferrer" aria-label="GitHub" className="hidden md:block p-2 text-graphite hover:text-accent transition-colors">
             <GitHubIcon className="h-4 w-4" />
           </a>

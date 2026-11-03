@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT, mailto } from "@/lib/contact";
 
 const directory = [
   { href: "/work", label: "Work" },
@@ -9,6 +10,9 @@ const directory = [
 ];
 
 const elsewhere = [
+  { href: mailto(), label: "Email" },
+  ...(CONTACT.calendly ? [{ href: CONTACT.calendly, label: "Book a call" }] : []),
+  ...(CONTACT.sessionize ? [{ href: CONTACT.sessionize, label: "Speaking" }] : []),
   { href: "https://github.com/jkelleman", label: "GitHub" },
   { href: "https://linkedin.com/in/jenniferkelleman", label: "LinkedIn" },
   { href: "https://medium.com/@jenkelleman", label: "Medium" },
@@ -22,6 +26,12 @@ export default function Footer() {
           <p className="fig-label">End of document</p>
           <p className="max-w-sm text-lg leading-relaxed text-ink">
             Language is infrastructure. I design it so people and agents can trust what they build on.
+          </p>
+          <p className="pt-2 text-graphite">
+            Say hello at{" "}
+            <a href={mailto()} className="link-draw text-accent">
+              {CONTACT.email}
+            </a>
           </p>
         </div>
         <nav aria-label="Site">
