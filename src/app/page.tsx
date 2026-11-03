@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Lock } from "lucide-react";
 import { CountUp, Reveal, Spotlight } from "@/components/Motion";
 import { CopyDiff, type CopyPair } from "@/components/CopyDiff";
 import { CONTACT, mailto } from "@/lib/contact";
+import { ExpertiseRow } from "@/components/Expertise";
 
 const work = [
   {
@@ -107,6 +108,9 @@ export default function HomePage() {
             Content design engineering and agentic AI strategy at Microsoft. I make autonomous agents legible,
             recoverable, and safe to trust.
           </p>
+        </Reveal>
+        <Reveal delay={200}>
+          <ExpertiseRow />
         </Reveal>
         <Reveal delay={240}>
           <div className="mt-12 flex flex-wrap items-center gap-6">
