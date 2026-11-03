@@ -1,5 +1,5 @@
-// Files for the protected Pipeline Copilot case study.
-// They live at the top level of a private Vercel Blob store dedicated to this case study
+// Files for the protected case studies.
+// They live at the top level of the private Vercel Blob store
 // and are served only through /api/case-assets/<name> after the password check.
 // Descriptions and alt text live with the private content, not in this public repo.
 
@@ -41,6 +41,20 @@ export const CASE_ASSETS = {
   "guardrail-technical-detail.png": {
     width: 1920,
     height: 1015 },
+  // Osmos and semantic layer process artifacts.
+  "osmos-task-pane-in-context.png": { width: 1024, height: 578 },
+  "osmos-review-gate-a.png": { width: 1024, height: 578 },
+  "osmos-review-gate-b.png": { width: 1024, height: 578 },
+  "osmos-removed-intake-approval.png": { width: 1024, height: 578 },
+  "osmos-task-card-states.png": { width: 371, height: 1024 },
+  "osmos-feedback-tracker.png": { width: 1600, height: 621 },
+  "sem-understanding-before-metadata.png": { width: 1024, height: 360 },
+  "sem-user-questions.png": { width: 848, height: 194 },
+  "sem-problem-framing.png": { width: 1024, height: 576 },
+  "sem-empty-state-before.png": { width: 1024, height: 632 },
+  "sem-empty-state-after.png": { width: 1024, height: 632 },
+  "sem-publish-messages.png": { width: 1024, height: 248 },
+  "sem-error-details.png": { width: 1024, height: 624 },
 } satisfies Record<string, CaseAsset>;
 
 export type CaseAssetName = keyof typeof CASE_ASSETS;
