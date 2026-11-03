@@ -19,17 +19,23 @@ export function CaseStudyHeader({
   subtitle,
   role,
   meta = [],
+  readTime,
 }: {
   badge: string;
   title: string;
   subtitle: string;
   role: string;
   meta?: [string, string][];
+  /** Minutes to read, shown beside the badge. */
+  readTime?: number;
   accent?: Accent;
 }) {
   return (
     <div className="mb-16 pt-6">
-      <p className="fig-label mb-6">{badge}</p>
+      <p className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span className="fig-label">{badge}</span>
+        {readTime && <span className="text-xs text-graphite">· {readTime} min read</span>}
+      </p>
       <h1 className="text-4xl font-medium leading-[1.08] tracking-tight text-ink sm:text-6xl">{title}</h1>
       <p className="mt-6 max-w-2xl text-xl leading-relaxed text-graphite">{subtitle}</p>
       <dl className="mt-12 grid gap-x-10 gap-y-6 border-t border-rule pt-6 text-sm sm:grid-cols-2">
@@ -183,12 +189,18 @@ export function ProcessNav({ steps }: { steps: [string, string][] }) {
 }
 
 /** Section anchor with the stage label above the heading. */
-export function Stage({ id, n, label }: { id: string; n: number; label: string }) {
+export function Stage({ id, n, label, takeaway }: { id: string; n: number; label: string; takeaway?: string }) {
   return (
     <div id={id} className="not-prose mt-28 scroll-mt-28 border-t-2 border-ink pt-5">
       <p className="fig-label">
         {String(n).padStart(2, "0")} · {label}
       </p>
+      {takeaway && (
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-graphite">
+          <span className="sr-only">In short: </span>
+          {takeaway}
+        </p>
+      )}
     </div>
   );
 }

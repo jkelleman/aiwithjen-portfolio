@@ -1,6 +1,24 @@
 // Small, illustrative UI mockups used inside before/after figures.
 // They show interaction patterns, not production screens.
 
+/* ---------------- Pipeline Copilot (generic, for the locked card) ---------------- */
+
+export function CopilotThumb() {
+  return (
+    <div className="space-y-2.5 text-[12.5px] leading-relaxed">
+      <p className="flex items-center gap-2 rounded-lg border border-fail/40 bg-fail/5 px-3 py-2 text-fail">
+        <span aria-hidden className="h-2 w-2 rounded-full bg-fail" /> Pipeline run failed
+      </p>
+      <p className="ml-6 rounded-lg rounded-tl-none border border-rule bg-paper px-3 py-2 text-ink">
+        Why did it fail, and what should I try?
+      </p>
+      <p className="mr-6 rounded-lg rounded-tr-none bg-accent-wash px-3 py-2 text-ink">
+        Here&rsquo;s what happened, what it affected, and the next step to fix it.
+      </p>
+    </div>
+  );
+}
+
 /* ---------------- Project Osmos ---------------- */
 
 export function OsmosChatBefore() {

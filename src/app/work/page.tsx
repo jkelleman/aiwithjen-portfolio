@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
+import type { ReactNode } from "react";
 import { CountUp, Reveal, Spotlight } from "@/components/Motion";
+import { CopilotThumb, MetricCardAfter, OsmosTaskAfter } from "@/components/CaseMocks";
 
 export const metadata: Metadata = {
   title: "Work | Jen Kelleman",
@@ -10,11 +12,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://aiwithjen.com/work" },
 };
 
-const studies = [
+type Study = {
+  fig: string;
+  locked?: boolean;
+  href: string;
+  title: string;
+  line: string;
+  readTime: number;
+  thumb: ReactNode;
+  stats: { to: number; suffix: string; label: string }[];
+};
+
+const studies: Study[] = [
   {
     fig: "Case study 01 · Conversation design",
     locked: true,
     href: "/work/pipeline-copilot",
+    readTime: 12,
+    thumb: <CopilotThumb />,
     title: "Teaching Copilot to explain a failed pipeline",
     line: "Multi-turn recovery, guardrails, and an evaluation rubric for the Copilot error assistant in Fabric Data Factory, and the recovery framework it grew into. Password protected.",
     stats: [
@@ -25,6 +40,8 @@ const studies = [
   {
     fig: "Case study 02 · Microsoft Fabric",
     href: "/work/project-osmos",
+    readTime: 9,
+    thumb: <OsmosTaskAfter />,
     title: "Designing the autonomous data engineer",
     line: "Guardrails, handoffs, and self-healing for Project Osmos, an agent that keeps building pipelines after you close your laptop.",
     stats: [
@@ -35,6 +52,8 @@ const studies = [
   {
     fig: "Case study 03 · Data systems",
     href: "/work/enterprise-semantic-layer",
+    readTime: 7,
+    thumb: <MetricCardAfter />,
     title: "Turning lakehouse plumbing into metrics people trust",
     line: "A three-tier semantic model and naming grammar that gave analysts and agents one shared language.",
     stats: [
@@ -65,11 +84,12 @@ export default function WorkPage() {
                 <div>
                   <span className="flex flex-wrap items-center gap-3">
                     <span className="fig-label">{s.fig}</span>
-                    {"locked" in s && s.locked && (
+                    {s.locked && (
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-rule px-2.5 py-0.5 text-xs text-graphite">
                         <Lock className="h-3 w-3" /> Password protected
                       </span>
                     )}
+                    <span className="text-xs text-graphite">{s.readTime} min read</span>
                   </span>
                   <h2 className="mt-6 text-3xl font-medium leading-tight tracking-tight text-ink transition-colors group-hover:text-accent sm:text-4xl">
                     {s.title}
@@ -80,7 +100,19 @@ export default function WorkPage() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
-                <div className="grid grid-cols-2 gap-6 self-end">
+                <div className="flex flex-col justify-between gap-8">
+                <div
+                  aria-hidden
+                  className="pointer-events-none select-none overflow-hidden rounded-xl border border-rule bg-card shadow-sm"
+                >
+                  <div className="flex gap-1.5 border-b border-rule bg-paper px-3 py-2">
+                    <span className="h-2 w-2 rounded-full bg-rule" />
+                    <span className="h-2 w-2 rounded-full bg-rule" />
+                    <span className="h-2 w-2 rounded-full bg-rule" />
+                  </div>
+                  <div className="p-4">{s.thumb}</div>
+                </div>
+                <div className="grid grid-cols-2 gap-6">
                   {s.stats.map((st) => (
                     <div key={st.label} className="border-t border-ink pt-4">
                       <span className="block text-5xl font-medium tracking-tight text-ink">
@@ -89,6 +121,7 @@ export default function WorkPage() {
                       <span className="mt-2 block text-sm text-graphite">{st.label}</span>
                     </div>
                   ))}
+                </div>
                 </div>
               </Link>
             </Spotlight>
