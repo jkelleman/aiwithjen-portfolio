@@ -12,7 +12,7 @@ export default function UnlockPage() {
     <div className="mx-auto max-w-md pt-24 pb-16 sm:pt-32">
       <p className="fig-label mb-6">Protected case study</p>
       <h1 className="text-4xl font-medium leading-[1.08] tracking-tight text-ink">
-        This one includes internal work.
+        My case studies include internal work.
       </h1>
       <p className="mt-5 leading-relaxed text-graphite">
         Enter the password I shared with you. If you don&rsquo;t have it, message me on{" "}

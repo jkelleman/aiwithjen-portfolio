@@ -8,7 +8,7 @@ const work = [
     fig: "Fig. 01 · Conversation design",
     href: "/work/pipeline-copilot",
     title: "Pipeline Copilot",
-    line: "Teaching Copilot to explain a failed pipeline, then turning the lessons into a recovery framework for all of Fabric. Includes internal work; ask me for the password.",
+    line: "Teaching Copilot to explain a failed pipeline, then turning the lessons into a recovery framework for all of Fabric.",
     value: 18,
     suffix: "",
     unit: "months building the error language Copilot speaks",
@@ -18,6 +18,7 @@ const work = [
   {
     fig: "Fig. 02 · Microsoft Fabric",
     href: "/work/project-osmos",
+    locked: true,
     title: "Project Osmos",
     line: "Designing the autonomous data engineer: guardrails, handoffs, and self-healing for an agent that runs while you sleep.",
     value: 78,
@@ -27,6 +28,7 @@ const work = [
   {
     fig: "Fig. 03 · Data systems",
     href: "/work/enterprise-semantic-layer",
+    locked: true,
     title: "The enterprise semantic layer",
     line: "Taxonomies and metadata contracts that turned lakehouse plumbing into metrics people and agents can query precisely.",
     value: 94,

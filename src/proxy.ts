@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { ACCESS_COOKIE, hasAccess } from "@/lib/caseAccess";
 
-// Locks the protected case study. Visitors without a valid access cookie
+// Locks the case studies. Visitors without a valid access cookie
 // are sent to /unlock and returned here after entering the password.
 export async function proxy(request: NextRequest) {
   if (await hasAccess(request.cookies.get(ACCESS_COOKIE)?.value)) {
@@ -16,5 +16,12 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/work/pipeline-copilot", "/work/pipeline-copilot/:path*"],
+  matcher: [
+    "/work/pipeline-copilot",
+    "/work/pipeline-copilot/:path*",
+    "/work/project-osmos",
+    "/work/project-osmos/:path*",
+    "/work/enterprise-semantic-layer",
+    "/work/enterprise-semantic-layer/:path*",
+  ],
 };
