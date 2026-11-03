@@ -32,7 +32,8 @@ function safeEqual(a: string, b: string): boolean {
 
 /** The configured password, or null. With no password set, everything stays locked. */
 function configuredPassword(): string | null {
-  const p = process.env.CASE_STUDY_PASSWORD;
+  // Trimmed so a stray space or newline pasted into the setting doesn't lock everyone out.
+  const p = process.env.CASE_STUDY_PASSWORD?.trim();
   return p && p.length >= 6 ? p : null;
 }
 
@@ -53,6 +54,7 @@ export async function hasAccess(cookieValue: string | undefined): Promise<boolea
 
 export async function passwordMatches(attempt: string): Promise<boolean> {
   const password = configuredPassword();
+  attempt = attempt.trim();
   if (!password || !attempt) return false;
   // Compare digests so the comparison time doesn't depend on the input length.
   const [a, b] = await Promise.all([hmac("compare", attempt), hmac("compare", password)]);
