@@ -11,6 +11,7 @@ export function CaseFigure({
   caption,
   alt,
   dark = true,
+  narrow = false,
 }: {
   fig: string;
   name: CaseAssetName;
@@ -18,6 +19,8 @@ export function CaseFigure({
   alt: string;
   /** Slide exports are dark; give them a dark mat so edges don't glare. */
   dark?: boolean;
+  /** Tall, narrow captures (a side pane) render at a readable width, centered. */
+  narrow?: boolean;
 }) {
   const a = CASE_ASSETS[name];
   const src = caseAssetUrl(name);
@@ -31,7 +34,7 @@ export function CaseFigure({
       </div>
       <div className={`overflow-hidden rounded-2xl border border-rule ${dark ? "bg-[#0b1220]" : "bg-card"}`}>
         {/* eslint-disable-next-line @next/next/no-img-element -- served from an auth-checked route; the image optimizer can't forward the cookie */}
-        <img src={src} width={a.width} height={a.height} alt={alt} loading="lazy" decoding="async" className="block h-auto w-full" />
+        <img src={src} width={a.width} height={a.height} alt={alt} loading="lazy" decoding="async" className={`block h-auto w-full ${narrow ? "mx-auto max-w-xs py-6" : ""}`} />
       </div>
       <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-graphite">{caption}</figcaption>
     </figure>
