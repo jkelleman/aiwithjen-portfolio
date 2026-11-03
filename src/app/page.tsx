@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Lock } from "lucide-react";
 import { CountUp, Reveal, Spotlight } from "@/components/Motion";
 import { CopyDiff, type CopyPair } from "@/components/CopyDiff";
+import { CONTACT, mailto } from "@/lib/contact";
 
 const work = [
   {
@@ -247,14 +248,30 @@ export default function HomePage() {
           <p className="max-w-3xl text-4xl font-medium leading-tight tracking-tight text-ink sm:text-5xl">
             Building agents people need to trust? Let’s talk.
           </p>
-          <a
-            href="https://linkedin.com/in/jenniferkelleman"
-            target="_blank"
-            rel="noreferrer"
-            className="link-draw mt-10 inline-block text-2xl text-accent sm:text-3xl"
-          >
-            Message me on LinkedIn
+          <a href={mailto("Hello from aiwithjen.com")} className="link-draw mt-10 inline-block text-2xl text-accent sm:text-3xl">
+            {CONTACT.email}
           </a>
+          <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-graphite">
+            {CONTACT.calendly && (
+              <li>
+                <a href={CONTACT.calendly} target="_blank" rel="noreferrer" className="link-draw hover:text-accent">
+                  Book a 20-minute call
+                </a>
+              </li>
+            )}
+            {CONTACT.sessionize && (
+              <li>
+                <a href={CONTACT.sessionize} target="_blank" rel="noreferrer" className="link-draw hover:text-accent">
+                  Invite me to speak
+                </a>
+              </li>
+            )}
+            <li>
+              <a href={CONTACT.linkedin} target="_blank" rel="noreferrer" className="link-draw hover:text-accent">
+                Message me on LinkedIn
+              </a>
+            </li>
+          </ul>
         </Reveal>
       </section>
     </div>

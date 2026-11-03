@@ -26,14 +26,14 @@ export function UnlockForm() {
       />
       {failed && (
         <p id="password-error" role="alert" className="mt-2 text-sm text-fail">
-          That password didn&rsquo;t match. Check for typos and try again.
+          That didn&rsquo;t match. Check for typos and try again, or email me and I&rsquo;ll resend it.
         </p>
       )}
       <button
         type="submit"
         className="mt-6 rounded-full bg-accent px-6 py-3 text-white transition-colors hover:bg-accent-dark"
       >
-        View the case study
+        Open the case study
       </button>
     </form>
   );
