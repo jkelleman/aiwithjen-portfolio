@@ -255,7 +255,7 @@ export default function HomePage() {
             {CONTACT.calendly && (
               <li>
                 <a href={CONTACT.calendly} target="_blank" rel="noreferrer" className="link-draw hover:text-accent">
-                  Book a 20-minute call
+                  Book a call with me
                 </a>
               </li>
             )}
