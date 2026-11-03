@@ -6,12 +6,12 @@ import { useState } from "react";
 
 type Tier = { name: string; who: string; examples: string[]; note: string };
 
-export function TierFigure({ tiers }: { tiers: Tier[] }) {
+export function TierFigure({ tiers, fig = "Fig. 01 · Three-tier semantic model" }: { tiers: Tier[]; fig?: string }) {
   const [active, setActive] = useState(tiers.length - 1);
 
   return (
     <figure className="not-prose my-14">
-      <p className="fig-label mb-5">Fig. 01 · Three-tier semantic model</p>
+      <p className="fig-label mb-5">{fig}</p>
       <div className="grid gap-6 rounded-2xl border border-rule bg-card/80 p-5 sm:p-8 md:grid-cols-[1.1fr_1fr]">
         <ol className="flex flex-col-reverse gap-2" aria-label="Tiers, from storage up to metrics">
           {tiers.map((t, i) => {
@@ -61,12 +61,12 @@ export function TierFigure({ tiers }: { tiers: Tier[] }) {
 
 type Segment = { text: string; role: string; note: string };
 
-export function GrammarFigure({ segments }: { segments: Segment[] }) {
+export function GrammarFigure({ segments, fig = "Fig. 02 · Metric naming grammar" }: { segments: Segment[]; fig?: string }) {
   const [active, setActive] = useState<number | null>(null);
 
   return (
     <figure className="not-prose my-14">
-      <p className="fig-label mb-5">Fig. 02 · Metric naming grammar</p>
+      <p className="fig-label mb-5">{fig}</p>
       <div className="rounded-2xl border border-rule bg-card/80 p-5 sm:p-8">
         <div className="flex flex-wrap items-end gap-y-6 font-mono text-xl sm:text-2xl">
           {segments.map((s, i) => {
