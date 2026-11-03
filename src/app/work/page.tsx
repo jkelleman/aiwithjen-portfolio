@@ -31,7 +31,7 @@ const studies: Study[] = [
     readTime: 12,
     thumb: <CopilotThumb />,
     title: "Teaching Copilot to explain a failed pipeline",
-    line: "Multi-turn recovery, guardrails, and an evaluation rubric for the Copilot error assistant in Fabric Data Factory, and the recovery framework it grew into. Password protected.",
+    line: "Multi-turn recovery, guardrails, and an evaluation rubric for the Copilot error assistant in Fabric Data Factory, and the recovery framework it grew into.",
     stats: [
       { to: 18, suffix: "", label: "months of error-language strategy behind it" },
       { to: 3, suffix: "", label: "teams piloting auto-generated errors from my content matrix" },
@@ -40,6 +40,7 @@ const studies: Study[] = [
   {
     fig: "Case study 02 · Microsoft Fabric",
     href: "/work/project-osmos",
+    locked: true,
     readTime: 9,
     thumb: <OsmosTaskAfter />,
     title: "Designing the autonomous data engineer",
@@ -52,6 +53,7 @@ const studies: Study[] = [
   {
     fig: "Case study 03 · Data systems",
     href: "/work/enterprise-semantic-layer",
+    locked: true,
     readTime: 7,
     thumb: <MetricCardAfter />,
     title: "Turning lakehouse plumbing into metrics people trust",
